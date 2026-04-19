@@ -1,18 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2026-04-07T01:13:11+02:00</updated><id>/feed.xml</id><title type="html">Searat</title><subtitle>A blog for answering the age-old question: “So… what do you actually do after work?”
-</subtitle><author><name>searat</name><email>your-email@domain.com</email></author><entry><title type="html">Welcome to Jekyll!</title><link href="/jekyll/demo/2026/04/06/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2026-04-06T00:00:00+02:00</published><updated>2026-04-06T00:00:00+02:00</updated><id>/jekyll/demo/2026/04/06/welcome-to-jekyll</id><content type="html" xml:base="/jekyll/demo/2026/04/06/welcome-to-jekyll.html"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2026-04-19T21:56:50+02:00</updated><id>/feed.xml</id><title type="html">Searat</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
+</subtitle><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><entry><title type="html">My first post!</title><link href="/demo/2026/04/19/my-first-post.html" rel="alternate" type="text/html" title="My first post!" /><published>2026-04-19T00:00:00+02:00</published><updated>2026-04-19T00:00:00+02:00</updated><id>/demo/2026/04/19/my-first-post</id><content type="html" xml:base="/demo/2026/04/19/my-first-post.html"><![CDATA[<p>This is my very first post. Yay!</p>
 
-<p>Jekyll requires blog post files to be named according to the following format:</p>
+<p>The website is still under construction. I’ve added a <strong>Categories</strong> link where posts are
+grouped by category; and an <strong>Archive</strong> link where posts are grouped and sorted (newest first)
+by date. Both of which can be found on the top right navigation area of the website.</p>
 
-<p><code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code></p>
+<p>I’m also going to add a few more social links so if anyone is interested in reaching me elsewhere,
+they will have that option.</p>
 
-<p>Where <code class="language-plaintext highlighter-rouge">YEAR</code> is a four-digit number, <code class="language-plaintext highlighter-rouge">MONTH</code> and <code class="language-plaintext highlighter-rouge">DAY</code> are both two-digit numbers, and <code class="language-plaintext highlighter-rouge">MARKUP</code> is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
-
-<p>Jekyll also offers powerful support for code snippets:</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
-
-<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>]]></content><author><name>searat</name><email>your-email@domain.com</email></author><category term="jekyll" /><category term="demo" /><summary type="html"><![CDATA[You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.]]></summary></entry></feed>
+<p>This post is categorized as “demo” since it doesn’t really contain anything other than meta-content.
+Hopefully I’m going to deliver a meaningful article soon!</p>]]></content><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><category term="demo" /><summary type="html"><![CDATA[This is my very first post. Yay!]]></summary></entry></feed>

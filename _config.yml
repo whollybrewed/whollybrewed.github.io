@@ -1,10 +1,11 @@
 title: Searat
 author:
   name: searat
-  email: your-email@domain.com
+  email: searat[dot]writer[at]proton[dot]me
 
 description: >
-  A blog for answering the age-old question: “So… what do you actually do after work?”
+  A blog for answering the age-old question:
+  "So… what do you do in your free time?"
 
 theme: minima
 
@@ -38,6 +39,7 @@ minima:
   nav_pages:
     - about.md
     - categories.md
+    - archive.md
 
   # Set to `true` to show excerpts on the homepage.
   show_excerpts: true
@@ -54,9 +56,6 @@ minima:
   #     * icon     Font Awesome icon id. `github` corresponds to `fa-github`.
   #     * url      Full URL of social profile.
   social_links:
-    - title: Minima Theme repository at GitHub
-      icon: github
-      url: "https://github.com/jekyll/minima"
-    - title: Jekyll at X (formerly Twitter)
-      icon: x-twitter
-      url: "https://x.com/jekyllrb"
+    - title: Bluesky
+      icon: bluesky
+      url: "https://bsky.app/profile/ndeer.bsky.social"
