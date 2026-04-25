@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Hi, I am Searat \[siː-ræt\]. Whenever I’m making small talk with coworkers or vague acquaintances,
+Hi, I am searat \[siː-ræt\]. Whenever I’m making small talk with coworkers or vague acquaintances,
 there’s an almost guaranteed moment where someone asks, “So… what do you do in your free time?”
 
 I then pause, which I like to think gives off an air of intrigue,
