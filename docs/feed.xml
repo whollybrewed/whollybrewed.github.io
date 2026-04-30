@@ -1,5 +1,63 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog//feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog//" rel="alternate" type="text/html" /><updated>2026-04-29T22:47:58+02:00</updated><id>https://searat.blog//feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
-</subtitle><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><entry><title type="html">My first post!</title><link href="https://searat.blog//demo/2026/04/19/my-first-post.html" rel="alternate" type="text/html" title="My first post!" /><published>2026-04-19T00:00:00+02:00</published><updated>2026-04-19T00:00:00+02:00</updated><id>https://searat.blog//demo/2026/04/19/my-first-post</id><content type="html" xml:base="https://searat.blog//demo/2026/04/19/my-first-post.html"><![CDATA[<p>This is my very first post. Yay!</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog//feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog//" rel="alternate" type="text/html" /><updated>2026-04-30T21:44:12+02:00</updated><id>https://searat.blog//feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
+</subtitle><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><entry><title type="html">Devlog #1: I’m Leaving</title><link href="https://searat.blog//game-development/2026/04/30/im-leaving-dev-1.html" rel="alternate" type="text/html" title="Devlog #1: I’m Leaving" /><published>2026-04-30T00:00:00+02:00</published><updated>2026-04-30T00:00:00+02:00</updated><id>https://searat.blog//game-development/2026/04/30/im-leaving-dev-1</id><content type="html" xml:base="https://searat.blog//game-development/2026/04/30/im-leaving-dev-1.html"><![CDATA[<p>This is the first devlog of my game: <em>I’m Leaving</em>. It is still a working title before
+something better pops up. In short, this game is a crossover between retro minesweeper
+game and 2D top-down shooter. As the title suggests, the player is trapped in a field of
+landmines and adversaries. The objective is simple: leaving the scene alive.</p>
+
+<p>The game is written in Lua using Löve, aka love2d, engine. I’m new to Lua and a very
+novice game developer.</p>
+
+<h3 id="010-alpha1">0.1.0-alpha.1</h3>
+<p>Adding basic Player<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> object with WASD movement, jumping, and shadow. Camera follows the Player.
+The World is just a grid; plain and boring.</p>
+
+<p><img src="/assets/images/im-leaving/0.1.0-alpha.1-demo.gif" alt="0.1.0-alpha.1-demo" /></p>
+
+<h3 id="020-alpha1">0.2.0-alpha.1</h3>
+<p>Trail of footprints added. Player now has a visual record of the trodden grids. I added a small delay
+for the appearance of the footprint after Player has entered a grid so that it feels more natural as if
+the Player “leaves the tracks behind”.</p>
+
+<p>Corsshair is added too. It follows the mouse cursor. The grid aimed by the Crosshair will have
+visual highlight.</p>
+
+<p><img src="/assets/images/im-leaving/0.2.0-alpha.1-demo.gif" alt="0.2.0-alpha.1-demo" /></p>
+
+<h3 id="030-alpha1">0.3.0-alpha.1</h3>
+<p>Finally adding landmines to a minesweeper-theme game. Landmines are attribute of World.
+For now the random function follows uniform distribution. The numbers which indicate nearby
+mines are computed on-the-fly rather than being precalculated. This is because later on I want
+to experiment with the abilities to destroy mines (by the Player) and to bury new mines
+(by the adversaries).</p>
+
+<p>When Player steps on a mined grid (marked by ‘X’), they will be blown up. The fly-off mechanism is
+the same as jumping, but slightly higher and in a random direction. So essentially being
+blown up is an involuntary jump. To make things simple, voluntary and involuntary jumps are mutually
+exclusive. Until now I haven’t really use the physics engine offered by love2d, since I decided with
+myself, that, unless I need all three Newton’s laws of motion and beyond, a physics engine is probably
+too overkill for me.</p>
+
+<p>By the way starting from this update I flip the background to dark color, simply because sometime I
+work on the game at night and that makes it better for the eyes.</p>
+
+<p><img src="/assets/images/im-leaving/0.3.0-alpha.1-demo.gif" alt="0.3.0-alpha.1-demo" /></p>
+
+<h3 id="040-alpha3">0.4.0-alpha.3</h3>
+<p>Bullet is added in this update. For obvious reason Bullet is going to be a very finite resource. The
+bullet trajectory physics is highly simplified. The bullets always travel in constant velocity,
+unaffected by Player’s motion, height, or the gravity. And the bullets will always reach the grid at
+which the Crosshair aims when the mouse is clicked.</p>
+
+<p><img src="/assets/images/im-leaving/0.4.0-alpha.3-demo.gif" alt="0.4.0-alpha.3-demo" /></p>
+
+<p>That’s all the updates. Thanks for your curiosity!</p>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Henceforth, capitalized words indicate class objects. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><category term="game-development" /><summary type="html"><![CDATA[This is the first devlog of my game: I’m Leaving. It is still a working title before something better pops up. In short, this game is a crossover between retro minesweeper game and 2D top-down shooter. As the title suggests, the player is trapped in a field of landmines and adversaries. The objective is simple: leaving the scene alive.]]></summary></entry><entry><title type="html">My first post!</title><link href="https://searat.blog//demo/2026/04/19/my-first-post.html" rel="alternate" type="text/html" title="My first post!" /><published>2026-04-19T00:00:00+02:00</published><updated>2026-04-19T00:00:00+02:00</updated><id>https://searat.blog//demo/2026/04/19/my-first-post</id><content type="html" xml:base="https://searat.blog//demo/2026/04/19/my-first-post.html"><![CDATA[<p>This is my very first post. Yay!</p>
 
 <p>The website is still under construction. I’ve added a <strong>Categories</strong> link where posts are
 grouped by category; and an <strong>Archive</strong> link where posts are grouped and sorted (newest first)

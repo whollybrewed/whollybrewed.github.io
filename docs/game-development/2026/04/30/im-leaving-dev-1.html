@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Devlog #1: I’m Leaving | searat’s blog</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Devlog #1: I’m Leaving" />
+<meta name="author" content="searat" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This is the first devlog of my game: I’m Leaving. It is still a working title before something better pops up. In short, this game is a crossover between retro minesweeper game and 2D top-down shooter. As the title suggests, the player is trapped in a field of landmines and adversaries. The objective is simple: leaving the scene alive." />
+<meta property="og:description" content="This is the first devlog of my game: I’m Leaving. It is still a working title before something better pops up. In short, this game is a crossover between retro minesweeper game and 2D top-down shooter. As the title suggests, the player is trapped in a field of landmines and adversaries. The objective is simple: leaving the scene alive." />
+<link rel="canonical" href="https://searat.blog//game-development/2026/04/30/im-leaving-dev-1.html" />
+<meta property="og:url" content="https://searat.blog//game-development/2026/04/30/im-leaving-dev-1.html" />
+<meta property="og:site_name" content="searat’s blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-30T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Devlog #1: I’m Leaving" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"searat"},"dateModified":"2026-04-30T00:00:00+02:00","datePublished":"2026-04-30T00:00:00+02:00","description":"This is the first devlog of my game: I’m Leaving. It is still a working title before something better pops up. In short, this game is a crossover between retro minesweeper game and 2D top-down shooter. As the title suggests, the player is trapped in a field of landmines and adversaries. The objective is simple: leaving the scene alive.","headline":"Devlog #1: I’m Leaving","mainEntityOfPage":{"@type":"WebPage","@id":"https://searat.blog//game-development/2026/04/30/im-leaving-dev-1.html"},"url":"https://searat.blog//game-development/2026/04/30/im-leaving-dev-1.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link id="main-stylesheet" rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://searat.blog//feed.xml" title="searat&apos;s blog" /><link rel="icon" type="image/png" href="/icons/favicon-96x96.png?v=1" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg?v=1" />
+<link rel="shortcut icon" href="/icons/favicon.ico?v=1" />
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png?v=1" />
+<meta name="apple-mobile-web-app-title" content="Searat" />
+<link rel="manifest" href="/icons/site.webmanifest?v=1" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="/">searat&#39;s blog</a>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon"></span>
+        </label>
+
+        <div class="nav-items">
+  <a class="nav-item" href="/about/">About</a>
+  <a class="nav-item" href="/categories/">Categories</a>
+  <a class="nav-item" href="/archive/">Archive</a>
+</div>
+
+      </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Devlog #1: I&#39;m Leaving</h1>
+    <div class="post-meta">
+      <time class="dt-published" datetime="2026-04-30T00:00:00+02:00" itemprop="datePublished">
+        2026-04-30
+      </time>
+    </div>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>This is the first devlog of my game: <em>I’m Leaving</em>. It is still a working title before
+something better pops up. In short, this game is a crossover between retro minesweeper
+game and 2D top-down shooter. As the title suggests, the player is trapped in a field of
+landmines and adversaries. The objective is simple: leaving the scene alive.</p>
+
+<p>The game is written in Lua using Löve, aka love2d, engine. I’m new to Lua and a very
+novice game developer.</p>
+
+<h3 id="010-alpha1">0.1.0-alpha.1</h3>
+<p>Adding basic Player<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> object with WASD movement, jumping, and shadow. Camera follows the Player.
+The World is just a grid; plain and boring.</p>
+
+<p><img src="/assets/images/im-leaving/0.1.0-alpha.1-demo.gif" alt="0.1.0-alpha.1-demo" /></p>
+
+<h3 id="020-alpha1">0.2.0-alpha.1</h3>
+<p>Trail of footprints added. Player now has a visual record of the trodden grids. I added a small delay
+for the appearance of the footprint after Player has entered a grid so that it feels more natural as if
+the Player “leaves the tracks behind”.</p>
+
+<p>Corsshair is added too. It follows the mouse cursor. The grid aimed by the Crosshair will have
+visual highlight.</p>
+
+<p><img src="/assets/images/im-leaving/0.2.0-alpha.1-demo.gif" alt="0.2.0-alpha.1-demo" /></p>
+
+<h3 id="030-alpha1">0.3.0-alpha.1</h3>
+<p>Finally adding landmines to a minesweeper-theme game. Landmines are attribute of World.
+For now the random function follows uniform distribution. The numbers which indicate nearby
+mines are computed on-the-fly rather than being precalculated. This is because later on I want
+to experiment with the abilities to destroy mines (by the Player) and to bury new mines
+(by the adversaries).</p>
+
+<p>When Player steps on a mined grid (marked by ‘X’), they will be blown up. The fly-off mechanism is
+the same as jumping, but slightly higher and in a random direction. So essentially being
+blown up is an involuntary jump. To make things simple, voluntary and involuntary jumps are mutually
+exclusive. Until now I haven’t really use the physics engine offered by love2d, since I decided with
+myself, that, unless I need all three Newton’s laws of motion and beyond, a physics engine is probably
+too overkill for me.</p>
+
+<p>By the way starting from this update I flip the background to dark color, simply because sometime I
+work on the game at night and that makes it better for the eyes.</p>
+
+<p><img src="/assets/images/im-leaving/0.3.0-alpha.1-demo.gif" alt="0.3.0-alpha.1-demo" /></p>
+
+<h3 id="040-alpha3">0.4.0-alpha.3</h3>
+<p>Bullet is added in this update. For obvious reason Bullet is going to be a very finite resource. The
+bullet trajectory physics is highly simplified. The bullets always travel in constant velocity,
+unaffected by Player’s motion, height, or the gravity. And the bullets will always reach the grid at
+which the Crosshair aims when the mouse is clicked.</p>
+
+<p><img src="/assets/images/im-leaving/0.4.0-alpha.3-demo.gif" alt="0.4.0-alpha.3-demo" /></p>
+
+<p>That’s all the updates. Thanks for your curiosity!</p>
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Henceforth, capitalized words indicate class objects. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+  </div>
+
+  <a class="u-url" href="/game-development/2026/04/30/im-leaving-dev-1.html" hidden></a>
+</article>
+
+      </div>
+    </main><link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css">
+
+<footer class="site-footer h-card">
+  <data class="u-url" value="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <ul class="contact-list">
+          <li class="p-name">searat</li>
+          <li><a class="u-email" href="mailto:searat[dot]writer[at]proton[dot]me">searat[dot]writer[at]proton[dot]me</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+    <a rel="me" href="https://bsky.app/profile/ndeer.bsky.social" target="_blank" title="Bluesky">
+      <span class="grey fa-brands fa-bluesky fa-lg"></span>
+    </a>
+  </li>
+  <li>
+    <a href="https://searat.blog//feed.xml" target="_blank" title="Subscribe to syndication feed">
+      <svg class="svg-icon grey" viewbox="0 0 16 16">
+        <path d="M12.8 16C12.8 8.978 7.022 3.2 0 3.2V0c8.777 0 16 7.223 16 16h-3.2zM2.194
+          11.61c1.21 0 2.195.985 2.195 2.196 0 1.21-.99 2.194-2.2 2.194C.98 16 0 15.017 0
+          13.806c0-1.21.983-2.195 2.194-2.195zM10.606
+          16h-3.11c0-4.113-3.383-7.497-7.496-7.497v-3.11c5.818 0 10.606 4.79 10.606 10.607z"
+        />
+      </svg>
+    </a>
+  </li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+
+</body>
+
+</html>
