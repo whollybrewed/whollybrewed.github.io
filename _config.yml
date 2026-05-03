@@ -10,7 +10,7 @@ description: >
 theme: minima
 
 baseurl: ""
-url: "https://searat.blog/"
+url: "https://searat.blog"
 
 plugins:
   - jekyll-feed
