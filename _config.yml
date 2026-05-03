@@ -9,17 +9,19 @@ description: >
 
 theme: minima
 
+baseurl: ""
+url: "https://searat.blog/"
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-paginate
+  - jekyll-sitemap
 
 sass:
   quiet_deps: true
   silence_deprecations: [import]
 
-baseurl: ""
-url: "https://searat.blog/"
 
 # Pagination settings
 paginate: 5
