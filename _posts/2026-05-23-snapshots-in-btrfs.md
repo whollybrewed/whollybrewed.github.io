@@ -33,8 +33,11 @@ series[^2] of high quality articles published on Fedora Magazine, see the footno
 ## Snapshot with snapper
 
 One could configure snapshot using the btrfs commands alone, but I prefer a tool like
-`snapper` for convenience. There's also a GUI tool called `btrfs-assistants` but I
+`snapper`[^3] for convenience. There's also a GUI tool called `btrfs-assistant`[^4] but I
 lack the experience with it.
+
+[^3]: [openSUSE snapper](https://github.com/openSUSE/snapper)
+[^4]: [Btrfs Assistant](https://gitlab.com/btrfs-assistant/btrfs-assistant)
 
 On Fedora `snapper` can be installed via `dnf`. It is also recommended to install
 libdnf5 callback hooks for dnf integration, so that snapshots can be automatically
