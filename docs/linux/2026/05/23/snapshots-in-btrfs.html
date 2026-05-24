@@ -208,7 +208,8 @@ prefer to disable qgroups and just use the btrfs commands:</p>
 
 <hr />
 
-<p>Before I ran the Fedora upgrade, I created a pre-snapshot, printing the id number with <code class="language-plaintext highlighter-rouge">-p</code>.</p>
+<p>Before I ran the Fedora upgrade, I created a pre-snapshot, giving a description
+after <code class="language-plaintext highlighter-rouge">-d</code> and printing the id number with <code class="language-plaintext highlighter-rouge">-p</code>.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>snapper create <span class="nt">--type</span> pre <span class="nt">-p</span> <span class="nt">-d</span> <span class="s2">"upgrade from fedora 43"</span>
 </code></pre></div></div>
 <p>And immediately after the upgrade, I created a post-snapshot and linked it with the
@@ -225,7 +226,7 @@ pre-snapshot id number.</p>
 <span class="nb">sudo </span>snapper create <span class="nt">--type</span> pre <span class="nt">--print-number</span> <span class="nt">--description</span> <span class="s2">"before upgrade"</span>
 
 <span class="c"># Mark snapshot after the change (pairs with PRE)</span>
-<span class="nb">sudo </span>snapper create <span class="nt">--type</span> post  <span class="nt">--pre-number</span> &lt;number&gt; <span class="nt">--description</span> <span class="s2">"after upgrade"</span>
+<span class="nb">sudo </span>snapper create <span class="nt">--type</span> post <span class="nt">--pre-number</span> &lt;id_pre&gt; <span class="nt">--description</span> <span class="s2">"after upgrade"</span>
 
 <span class="c"># Create snapshot with automatic cleanup policy</span>
 <span class="nb">sudo </span>snapper create <span class="nt">--description</span> <span class="s2">"test"</span> <span class="nt">--cleanup-algorithm</span> number

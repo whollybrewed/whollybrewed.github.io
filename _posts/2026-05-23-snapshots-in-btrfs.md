@@ -169,7 +169,8 @@ sudo btrfs filesystem du -s /.snapshots/<number>/
 
 ---
 
-Before I ran the Fedora upgrade, I created a pre-snapshot, printing the id number with `-p`.
+Before I ran the Fedora upgrade, I created a pre-snapshot, giving a description
+after `-d` and printing the id number with `-p`.
 ```bash
 sudo snapper create --type pre -p -d "upgrade from fedora 43"
 ```
@@ -189,7 +190,7 @@ sudo snapper create --description "my snapshot"
 sudo snapper create --type pre --print-number --description "before upgrade"
 
 # Mark snapshot after the change (pairs with PRE)
-sudo snapper create --type post  --pre-number <number> --description "after upgrade"
+sudo snapper create --type post --pre-number <id_pre> --description "after upgrade"
 
 # Create snapshot with automatic cleanup policy
 sudo snapper create --description "test" --cleanup-algorithm number

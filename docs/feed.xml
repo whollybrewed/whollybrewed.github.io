@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-05-24T14:29:00+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-05-24T14:33:22+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
 </subtitle><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><entry><title type="html">Snapshots in BTRFS</title><link href="https://searat.blog/linux/2026/05/23/snapshots-in-btrfs.html" rel="alternate" type="text/html" title="Snapshots in BTRFS" /><published>2026-05-23T00:00:00+02:00</published><updated>2026-05-23T00:00:00+02:00</updated><id>https://searat.blog/linux/2026/05/23/snapshots-in-btrfs</id><content type="html" xml:base="https://searat.blog/linux/2026/05/23/snapshots-in-btrfs.html"><![CDATA[<p>Similar to doomsday prepping, system snapshots are often overlooked and mocked for
 “being right once” when extraordinary catastrophe arrives.</p>
 
@@ -146,7 +146,8 @@ prefer to disable qgroups and just use the btrfs commands:</p>
 
 <hr />
 
-<p>Before I ran the Fedora upgrade, I created a pre-snapshot, printing the id number with <code class="language-plaintext highlighter-rouge">-p</code>.</p>
+<p>Before I ran the Fedora upgrade, I created a pre-snapshot, giving a description
+after <code class="language-plaintext highlighter-rouge">-d</code> and printing the id number with <code class="language-plaintext highlighter-rouge">-p</code>.</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>snapper create <span class="nt">--type</span> pre <span class="nt">-p</span> <span class="nt">-d</span> <span class="s2">"upgrade from fedora 43"</span>
 </code></pre></div></div>
 <p>And immediately after the upgrade, I created a post-snapshot and linked it with the
@@ -163,7 +164,7 @@ pre-snapshot id number.</p>
 <span class="nb">sudo </span>snapper create <span class="nt">--type</span> pre <span class="nt">--print-number</span> <span class="nt">--description</span> <span class="s2">"before upgrade"</span>
 
 <span class="c"># Mark snapshot after the change (pairs with PRE)</span>
-<span class="nb">sudo </span>snapper create <span class="nt">--type</span> post  <span class="nt">--pre-number</span> &lt;number&gt; <span class="nt">--description</span> <span class="s2">"after upgrade"</span>
+<span class="nb">sudo </span>snapper create <span class="nt">--type</span> post <span class="nt">--pre-number</span> &lt;id_pre&gt; <span class="nt">--description</span> <span class="s2">"after upgrade"</span>
 
 <span class="c"># Create snapshot with automatic cleanup policy</span>
 <span class="nb">sudo </span>snapper create <span class="nt">--description</span> <span class="s2">"test"</span> <span class="nt">--cleanup-algorithm</span> number
