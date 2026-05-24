@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-05-23T23:01:29+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-05-24T13:10:55+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
 </subtitle><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><entry><title type="html">Snapshots in BTRFS</title><link href="https://searat.blog/linux/2026/05/23/snapshots-in-btrfs.html" rel="alternate" type="text/html" title="Snapshots in BTRFS" /><published>2026-05-23T00:00:00+02:00</published><updated>2026-05-23T00:00:00+02:00</updated><id>https://searat.blog/linux/2026/05/23/snapshots-in-btrfs</id><content type="html" xml:base="https://searat.blog/linux/2026/05/23/snapshots-in-btrfs.html"><![CDATA[<p>Similar to doomsday prepping, system snapshots are often overlooked and mocked for
 “being right once” when extraordinary catastrophe arrives.</p>
 
@@ -120,7 +120,7 @@ EMPTY_PRE_POST_MIN_AGE="3600"
 
 <p><code class="language-plaintext highlighter-rouge">NUMBER_MIN_AGE="3600"</code> means “do not delete a numbered snapshot less than 1 hour old.”</p>
 
-<p><code class="language-plaintext highlighter-rouge">NUMBER_LIMIT="30"</code> means “keep up to 30 regular numbered snapshots.” Each <code class="language-plaintext highlighter-rouge">dnf</code>.
+<p><code class="language-plaintext highlighter-rouge">NUMBER_LIMIT="30"</code> means “keep up to 30 regular numbered snapshots.” Each <code class="language-plaintext highlighter-rouge">dnf</code>
 update equals two snapshots due to pre and post.</p>
 
 <p><code class="language-plaintext highlighter-rouge">TIMELINE_LIMIT_HOURLY="6"</code> means “keep the last 6 hourly snapshots.”</p>
@@ -137,7 +137,7 @@ space by each snapshot.</p>
 <span class="nb">sudo </span>btrfs quota rescan <span class="nt">-w</span> /
 </code></pre></div></div>
 
-<p>However, my experience is that it will make <code class="language-plaintext highlighter-rouge">snapper list</code> runs very slow.
+<p>However, my experience is that it will make <code class="language-plaintext highlighter-rouge">snapper list</code> run very slow.
 <code class="language-plaintext highlighter-rouge">--disable-used-space</code> can be added to the list command to bypass calculating. I
 prefer to disable qgroups and just use the btrfs commands:</p>
 

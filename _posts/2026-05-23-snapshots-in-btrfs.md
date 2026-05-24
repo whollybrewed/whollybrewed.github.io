@@ -137,7 +137,7 @@ EMPTY_PRE_POST_MIN_AGE="3600"
 
 `NUMBER_MIN_AGE="3600"` means "do not delete a numbered snapshot less than 1 hour old."
 
-`NUMBER_LIMIT="30"` means "keep up to 30 regular numbered snapshots." Each `dnf`.
+`NUMBER_LIMIT="30"` means "keep up to 30 regular numbered snapshots." Each `dnf`
 update equals two snapshots due to pre and post.
 
 `TIMELINE_LIMIT_HOURLY="6"` means "keep the last 6 hourly snapshots."
@@ -156,7 +156,7 @@ sudo btrfs quota enable /
 sudo btrfs quota rescan -w /
 ```
 
-However, my experience is that it will make `snapper list` runs very slow.
+However, my experience is that it will make `snapper list` run very slow.
 `--disable-used-space` can be added to the list command to bypass calculating. I
 prefer to disable qgroups and just use the btrfs commands:
 
