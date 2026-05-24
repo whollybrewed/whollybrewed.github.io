@@ -169,14 +169,14 @@ sudo btrfs filesystem du -s /.snapshots/<number>/
 
 ---
 
-Before I ran the Fedora upgrade, I created a pre-snapshot:
+Before I ran the Fedora upgrade, I created a pre-snapshot, printing the id number with `-p`.
 ```bash
-sudo snapper create --type pre -d "upgrade from fedora 43"
+sudo snapper create --type pre -p -d "upgrade from fedora 43"
 ```
-And immediately after the upgrade, I created a post-snapshot. They will be linked
-by snapper.
+And immediately after the upgrade, I created a post-snapshot and linked it with the
+pre-snapshot id number.
 ```bash
-sudo snapper create --type post -d "upgraded to fedora 44"
+sudo snapper create --type post --pre-number <id_pre> -d "upgraded to fedora 44"
 ```
 
 ## Cheatsheet
@@ -186,31 +186,31 @@ Here is a cheatsheet of some common commands
 sudo snapper create --description "my snapshot"
 
 # Mark snapshot before a system change (upgrade, install, etc.)
-sudo snapper create --type pre --description "before upgrade"
+sudo snapper create --type pre --print-number --description "before upgrade"
 
 # Mark snapshot after the change (pairs with PRE)
-sudo snapper create --type post --description "after upgrade"
+sudo snapper create --type post  --pre-number <number> --description "after upgrade"
 
 # Create snapshot with automatic cleanup policy
 sudo snapper create --description "test" --cleanup-algorithm number
 
 # Show file-level changes between two snapshots
-sudo snapper status PRE..POST
+sudo snapper status <id_pre>..<id_post>
 
 # Show detailed diff of changes between snapshots
-sudo snapper diff PRE..POST
+sudo snapper diff <id_pre>..<id_post>
 
 # Revert filesystem changes between PRE and POST snapshot pair
-sudo snapper undochange PRE..POST
+sudo snapper undochange <id_pre>..<id_post>
 
 # Roll entire system state back to a snapshot (boot-level rollback)
-sudo snapper rollback <snapshot-id>
+sudo snapper rollback <id>
 
 # Delete a single snapshot
 sudo snapper delete <id>
 
 # Delete a range of snapshots
-sudo snapper delete <id1>..<id2>
+sudo snapper delete <id1>-<id2>
 
 # Remove old timeline snapshots based on config rules
 sudo snapper cleanup timeline

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-05-24T13:18:35+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-05-24T14:29:00+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
 </subtitle><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><entry><title type="html">Snapshots in BTRFS</title><link href="https://searat.blog/linux/2026/05/23/snapshots-in-btrfs.html" rel="alternate" type="text/html" title="Snapshots in BTRFS" /><published>2026-05-23T00:00:00+02:00</published><updated>2026-05-23T00:00:00+02:00</updated><id>https://searat.blog/linux/2026/05/23/snapshots-in-btrfs</id><content type="html" xml:base="https://searat.blog/linux/2026/05/23/snapshots-in-btrfs.html"><![CDATA[<p>Similar to doomsday prepping, system snapshots are often overlooked and mocked for
 “being right once” when extraordinary catastrophe arrives.</p>
 
@@ -146,12 +146,12 @@ prefer to disable qgroups and just use the btrfs commands:</p>
 
 <hr />
 
-<p>Before I ran the Fedora upgrade, I created a pre-snapshot:</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>snapper create <span class="nt">--type</span> pre <span class="nt">-d</span> <span class="s2">"upgrade from fedora 43"</span>
+<p>Before I ran the Fedora upgrade, I created a pre-snapshot, printing the id number with <code class="language-plaintext highlighter-rouge">-p</code>.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>snapper create <span class="nt">--type</span> pre <span class="nt">-p</span> <span class="nt">-d</span> <span class="s2">"upgrade from fedora 43"</span>
 </code></pre></div></div>
-<p>And immediately after the upgrade, I created a post-snapshot. They will be linked
-by snapper.</p>
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>snapper create <span class="nt">--type</span> post <span class="nt">-d</span> <span class="s2">"upgraded to fedora 44"</span>
+<p>And immediately after the upgrade, I created a post-snapshot and linked it with the
+pre-snapshot id number.</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>snapper create <span class="nt">--type</span> post <span class="nt">--pre-number</span> &lt;id_pre&gt; <span class="nt">-d</span> <span class="s2">"upgraded to fedora 44"</span>
 </code></pre></div></div>
 
 <h2 id="cheatsheet">Cheatsheet</h2>
@@ -160,31 +160,31 @@ by snapper.</p>
 <span class="nb">sudo </span>snapper create <span class="nt">--description</span> <span class="s2">"my snapshot"</span>
 
 <span class="c"># Mark snapshot before a system change (upgrade, install, etc.)</span>
-<span class="nb">sudo </span>snapper create <span class="nt">--type</span> pre <span class="nt">--description</span> <span class="s2">"before upgrade"</span>
+<span class="nb">sudo </span>snapper create <span class="nt">--type</span> pre <span class="nt">--print-number</span> <span class="nt">--description</span> <span class="s2">"before upgrade"</span>
 
 <span class="c"># Mark snapshot after the change (pairs with PRE)</span>
-<span class="nb">sudo </span>snapper create <span class="nt">--type</span> post <span class="nt">--description</span> <span class="s2">"after upgrade"</span>
+<span class="nb">sudo </span>snapper create <span class="nt">--type</span> post  <span class="nt">--pre-number</span> &lt;number&gt; <span class="nt">--description</span> <span class="s2">"after upgrade"</span>
 
 <span class="c"># Create snapshot with automatic cleanup policy</span>
 <span class="nb">sudo </span>snapper create <span class="nt">--description</span> <span class="s2">"test"</span> <span class="nt">--cleanup-algorithm</span> number
 
 <span class="c"># Show file-level changes between two snapshots</span>
-<span class="nb">sudo </span>snapper status PRE..POST
+<span class="nb">sudo </span>snapper status &lt;id_pre&gt;..&lt;id_post&gt;
 
 <span class="c"># Show detailed diff of changes between snapshots</span>
-<span class="nb">sudo </span>snapper diff PRE..POST
+<span class="nb">sudo </span>snapper diff &lt;id_pre&gt;..&lt;id_post&gt;
 
 <span class="c"># Revert filesystem changes between PRE and POST snapshot pair</span>
-<span class="nb">sudo </span>snapper undochange PRE..POST
+<span class="nb">sudo </span>snapper undochange &lt;id_pre&gt;..&lt;id_post&gt;
 
 <span class="c"># Roll entire system state back to a snapshot (boot-level rollback)</span>
-<span class="nb">sudo </span>snapper rollback &lt;snapshot-id&gt;
+<span class="nb">sudo </span>snapper rollback &lt;<span class="nb">id</span><span class="o">&gt;</span>
 
 <span class="c"># Delete a single snapshot</span>
 <span class="nb">sudo </span>snapper delete &lt;<span class="nb">id</span><span class="o">&gt;</span>
 
 <span class="c"># Delete a range of snapshots</span>
-<span class="nb">sudo </span>snapper delete &lt;id1&gt;..&lt;id2&gt;
+<span class="nb">sudo </span>snapper delete &lt;id1&gt;-&lt;id2&gt;
 
 <span class="c"># Remove old timeline snapshots based on config rules</span>
 <span class="nb">sudo </span>snapper cleanup timeline
