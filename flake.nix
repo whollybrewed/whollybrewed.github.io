@@ -24,6 +24,7 @@
             export GEM_HOME=$PWD/.gems
             export GEM_PATH=$GEM_HOME
             export PATH=$GEM_HOME/bin:$PATH
+            export RUBYOPT="-W0"
             export PS1="(nix) $PS1"
             echo "Installed nix packages:"
               for p in $buildInputs $nativeBuildInputs; do
