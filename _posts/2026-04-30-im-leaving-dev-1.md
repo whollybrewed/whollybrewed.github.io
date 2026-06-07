@@ -13,6 +13,16 @@ landmines and adversaries. The objective is simple: leaving the scene alive.
 The game is written in Lua using Löve, aka love2d, engine. I'm new to Lua and a very
 novice game developer.
 
+<details markdown="1">
+<summary><strong>Articles in the series</strong></summary>
+
+- [Devlog #1: I'm Leaving]({% post_url 2026-04-30-im-leaving-dev-1 %})
+- [Devlog #2: I'm Leaving, Jump!]({% post_url 2026-06-07-im-leaving-dev-2 %})
+
+</details>
+
+---
+
 ### 0.1.0-alpha.1
 Adding basic Player[^1] object with WASD movement, jumping, and shadow. Camera follows the Player.
 The World is just a grid; plain and boring.

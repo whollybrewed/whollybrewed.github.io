@@ -1,5 +1,62 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-06-04T21:19:12+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
-</subtitle><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><entry><title type="html">Snapshots in BTRFS</title><link href="https://searat.blog/linux/2026/05/23/snapshots-in-btrfs.html" rel="alternate" type="text/html" title="Snapshots in BTRFS" /><published>2026-05-23T00:00:00+02:00</published><updated>2026-05-23T00:00:00+02:00</updated><id>https://searat.blog/linux/2026/05/23/snapshots-in-btrfs</id><content type="html" xml:base="https://searat.blog/linux/2026/05/23/snapshots-in-btrfs.html"><![CDATA[<p>Similar to doomsday prepping, system snapshots are often overlooked and mocked for
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-06-07T12:32:08+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
+</subtitle><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><entry><title type="html">Devlog #2: I’m Leaving, Jump!</title><link href="https://searat.blog/game-development/2026/06/07/im-leaving-dev-2.html" rel="alternate" type="text/html" title="Devlog #2: I’m Leaving, Jump!" /><published>2026-06-07T00:00:00+02:00</published><updated>2026-06-07T00:00:00+02:00</updated><id>https://searat.blog/game-development/2026/06/07/im-leaving-dev-2</id><content type="html" xml:base="https://searat.blog/game-development/2026/06/07/im-leaving-dev-2.html"><![CDATA[<p>In this dev log, I’ll walk through some of the visual aids that have been added
+to improve the development experience, along with the new jumping actions
+available to Player.</p>
+
+<details>
+  <summary><strong>Articles in the series</strong></summary>
+
+  <ul>
+    <li><a href="/game-development/2026/04/30/im-leaving-dev-1.html">Devlog #1: I’m Leaving</a></li>
+    <li><a href="/game-development/2026/06/07/im-leaving-dev-2.html">Devlog #2: I’m Leaving, Jump!</a></li>
+  </ul>
+
+</details>
+
+<hr />
+
+<h3 id="050-alpha2">0.5.0-alpha.2</h3>
+<h4 id="the-explosions">The Explosions</h4>
+
+<p>In the previous versions landmines were simply marked as ‘X’ when being shot at
+or stepped on. I quickly realized that it wasn’t very intuitive when showing the
+demo to others. To better portray the idea to potential collaborators and
+testers, I decided to add a graphic placeholder to indicate when a landmine
+has been ignited.</p>
+
+<p><img src="/assets/images/im-leaving/0.5.0-alpha.2-demo-1.gif" alt="0.5.0-alpha.2-demo-1" /></p>
+
+<h4 id="the-jumps">The Jumps</h4>
+
+<p>Player now can do a double or a triple jump, intended as an unlockable skill/technique
+in the full game. While these mechanics are common in action games, the idea which inspired
+me specifically was the <a href="https://en.wikipedia.org/wiki/Qinggong">Qinggong (輕功)</a>, an
+agile gravity-defying movement in Chinese martial arts, reintroduced to modern
+pop culture by Jin Yong through his <a href="https://en.wikipedia.org/wiki/Jin_Yong#Series">wuxia series</a>
+during the 50s to 70s.</p>
+
+<p><img src="/assets/images/im-leaving/0.5.0-alpha.2-demo-2.gif" alt="0.5.0-alpha.2-demo-2" /></p>
+
+<hr />
+
+<p>Another jumping technique I implemented is the “precise jump”. It is
+designed to be used in combination with the triple jump. After performing a
+triple jump, Player has a short time window near the peak to execute a
+precise jump to some grid position within a defined range. Activation readiness is
+indicated by the crosshair color changing from red to green.</p>
+
+<p><img src="/assets/images/im-leaving/0.5.0-alpha.2-demo-3.gif" alt="0.5.0-alpha.2-demo-3" /></p>
+
+<p>The animation of the precise jump is of course just a visual placeholder at the
+moment. The sequence, starting with a thrust charge (indicated by the player blinking),
+followed by a linear acceleration toward the target grid, is heavily inspired by
+the <a href="https://en.wikipedia.org/wiki/Warp_drive">warp drive</a> from the Star Trek series.
+In particular, the charging and thrust aesthetics aim to emulate the USS Enterprise
+in <em>Star Trek: The Next Generation</em>.</p>
+
+<p><img src="/assets/images/im-leaving/star-trek-tng-warp.gif" alt="star-trek-tng-warp" /></p>
+
+<p>That’s all the updates. Thanks for your curiosity!</p>]]></content><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><category term="game-development" /><summary type="html"><![CDATA[In this dev log, I’ll walk through some of the visual aids that have been added to improve the development experience, along with the new jumping actions available to Player.]]></summary></entry><entry><title type="html">Snapshots in BTRFS</title><link href="https://searat.blog/linux/2026/05/23/snapshots-in-btrfs.html" rel="alternate" type="text/html" title="Snapshots in BTRFS" /><published>2026-05-23T00:00:00+02:00</published><updated>2026-05-23T00:00:00+02:00</updated><id>https://searat.blog/linux/2026/05/23/snapshots-in-btrfs</id><content type="html" xml:base="https://searat.blog/linux/2026/05/23/snapshots-in-btrfs.html"><![CDATA[<p>Similar to doomsday prepping, system snapshots are often overlooked and mocked for
 “being right once” when extraordinary catastrophe arrives.</p>
 
 <p>As Fedora 44 is being rolled out, I’ve came upon that time of the year to review my
@@ -229,6 +286,18 @@ landmines and adversaries. The objective is simple: leaving the scene alive.</p>
 
 <p>The game is written in Lua using Löve, aka love2d, engine. I’m new to Lua and a very
 novice game developer.</p>
+
+<details>
+  <summary><strong>Articles in the series</strong></summary>
+
+  <ul>
+    <li><a href="/game-development/2026/04/30/im-leaving-dev-1.html">Devlog #1: I’m Leaving</a></li>
+    <li><a href="/game-development/2026/06/07/im-leaving-dev-2.html">Devlog #2: I’m Leaving, Jump!</a></li>
+  </ul>
+
+</details>
+
+<hr />
 
 <h3 id="010-alpha1">0.1.0-alpha.1</h3>
 <p>Adding basic Player<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> object with WASD movement, jumping, and shadow. Camera follows the Player.
