@@ -29,7 +29,17 @@ The World is just a grid; plain and boring.
 
 [^1]: Henceforth, capitalized words indicate class objects.
 
-![0.1.0-alpha.1-demo]({{ site.baseurl }}/assets/images/im-leaving/0.1.0-alpha.1-demo.gif)
+<video
+  style="width: 100%; max-width: 720px; height: auto;"
+  controls
+  autoplay
+  muted
+  loop
+  playsinline
+>
+  <source src="{{ '/assets/videos/im-leaving/0.1.0-alpha.1-demo.mp4' | relative_url }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ### 0.2.0-alpha.1
 Trail of footprints added. Player now has a visual record of the trodden grids. I added a small delay
@@ -39,7 +49,17 @@ the Player "leaves the tracks behind".
 Corsshair is added too. It follows the mouse cursor. The grid aimed by the Crosshair will have
 visual highlight.
 
-![0.2.0-alpha.1-demo]({{ site.baseurl }}/assets/images/im-leaving/0.2.0-alpha.1-demo.gif)
+<video
+  style="width: 100%; max-width: 720px; height: auto;"
+  controls
+  autoplay
+  muted
+  loop
+  playsinline
+>
+  <source src="{{ '/assets/videos/im-leaving/0.2.0-alpha.1-demo.mp4' | relative_url }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ### 0.3.0-alpha.1
 Finally adding landmines to a minesweeper-theme game. Landmines are attribute of World.
@@ -58,7 +78,17 @@ too overkill for me.
 By the way starting from this update I flip the background to dark color, simply because sometime I
 work on the game at night and that makes it better for the eyes.
 
-![0.3.0-alpha.1-demo]({{ site.baseurl }}/assets/images/im-leaving/0.3.0-alpha.1-demo.gif)
+<video
+  style="width: 100%; max-width: 720px; height: auto;"
+  controls
+  autoplay
+  muted
+  loop
+  playsinline
+>
+  <source src="{{ '/assets/videos/im-leaving/0.3.0-alpha.1-demo.mp4' | relative_url }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ### 0.4.0-alpha.3
 Bullet is added in this update. For obvious reason Bullet is going to be a very finite resource. The
@@ -66,6 +96,16 @@ bullet trajectory physics is highly simplified. The bullets always travel in con
 unaffected by Player's motion, height, or the gravity. And the bullets will always reach the grid at
 which the Crosshair aims when the mouse is clicked.
 
-![0.4.0-alpha.3-demo]({{ site.baseurl }}/assets/images/im-leaving/0.4.0-alpha.3-demo.gif)
+<video
+  style="width: 100%; max-width: 720px; height: auto;"
+  controls
+  autoplay
+  muted
+  loop
+  playsinline
+>
+  <source src="{{ '/assets/videos/im-leaving/0.4.0-alpha.3-demo.mp4' | relative_url }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 That's all the updates. Thanks for your curiosity!

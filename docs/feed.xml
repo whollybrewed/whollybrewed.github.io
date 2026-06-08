@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-06-07T12:32:08+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-06-08T20:43:21+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
 </subtitle><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><entry><title type="html">Devlog #2: I’m Leaving, Jump!</title><link href="https://searat.blog/game-development/2026/06/07/im-leaving-dev-2.html" rel="alternate" type="text/html" title="Devlog #2: I’m Leaving, Jump!" /><published>2026-06-07T00:00:00+02:00</published><updated>2026-06-07T00:00:00+02:00</updated><id>https://searat.blog/game-development/2026/06/07/im-leaving-dev-2</id><content type="html" xml:base="https://searat.blog/game-development/2026/06/07/im-leaving-dev-2.html"><![CDATA[<p>In this dev log, I’ll walk through some of the visual aids that have been added
 to improve the development experience, along with the new jumping actions
 available to Player.</p>
@@ -24,7 +24,10 @@ demo to others. To better portray the idea to potential collaborators and
 testers, I decided to add a graphic placeholder to indicate when a landmine
 has been ignited.</p>
 
-<p><img src="/assets/images/im-leaving/0.5.0-alpha.2-demo-1.gif" alt="0.5.0-alpha.2-demo-1" /></p>
+<video style="width: 100%; max-width: 720px; height: auto;" controls="" autoplay="" muted="" loop="" playsinline="">
+  <source src="/assets/videos/im-leaving/0.5.0-alpha.2-demo-1.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
 <h4 id="the-jumps">The Jumps</h4>
 
@@ -35,7 +38,10 @@ agile gravity-defying movement in Chinese martial arts, reintroduced to modern
 pop culture by Jin Yong through his <a href="https://en.wikipedia.org/wiki/Jin_Yong#Series">wuxia series</a>
 during the 50s to 70s.</p>
 
-<p><img src="/assets/images/im-leaving/0.5.0-alpha.2-demo-2.gif" alt="0.5.0-alpha.2-demo-2" /></p>
+<video style="width: 100%; max-width: 720px; height: auto;" controls="" autoplay="" muted="" loop="" playsinline="">
+  <source src="/assets/videos/im-leaving/0.5.0-alpha.2-demo-2.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
 <hr />
 
@@ -45,7 +51,10 @@ triple jump, Player has a short time window near the peak to execute a
 precise jump to some grid position within a defined range. Activation readiness is
 indicated by the crosshair color changing from red to green.</p>
 
-<p><img src="/assets/images/im-leaving/0.5.0-alpha.2-demo-3.gif" alt="0.5.0-alpha.2-demo-3" /></p>
+<video style="width: 100%; max-width: 720px; height: auto;" controls="" autoplay="" muted="" loop="" playsinline="">
+  <source src="/assets/videos/im-leaving/0.5.0-alpha.2-demo-3.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
 <p>The animation of the precise jump is of course just a visual placeholder at the
 moment. The sequence, starting with a thrust charge (indicated by the player blinking),
@@ -303,7 +312,10 @@ novice game developer.</p>
 <p>Adding basic Player<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> object with WASD movement, jumping, and shadow. Camera follows the Player.
 The World is just a grid; plain and boring.</p>
 
-<p><img src="/assets/images/im-leaving/0.1.0-alpha.1-demo.gif" alt="0.1.0-alpha.1-demo" /></p>
+<video style="width: 100%; max-width: 720px; height: auto;" controls="" autoplay="" muted="" loop="" playsinline="">
+  <source src="/assets/videos/im-leaving/0.1.0-alpha.1-demo.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
 <h3 id="020-alpha1">0.2.0-alpha.1</h3>
 <p>Trail of footprints added. Player now has a visual record of the trodden grids. I added a small delay
@@ -313,7 +325,10 @@ the Player “leaves the tracks behind”.</p>
 <p>Corsshair is added too. It follows the mouse cursor. The grid aimed by the Crosshair will have
 visual highlight.</p>
 
-<p><img src="/assets/images/im-leaving/0.2.0-alpha.1-demo.gif" alt="0.2.0-alpha.1-demo" /></p>
+<video style="width: 100%; max-width: 720px; height: auto;" controls="" autoplay="" muted="" loop="" playsinline="">
+  <source src="/assets/videos/im-leaving/0.2.0-alpha.1-demo.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
 <h3 id="030-alpha1">0.3.0-alpha.1</h3>
 <p>Finally adding landmines to a minesweeper-theme game. Landmines are attribute of World.
@@ -332,7 +347,10 @@ too overkill for me.</p>
 <p>By the way starting from this update I flip the background to dark color, simply because sometime I
 work on the game at night and that makes it better for the eyes.</p>
 
-<p><img src="/assets/images/im-leaving/0.3.0-alpha.1-demo.gif" alt="0.3.0-alpha.1-demo" /></p>
+<video style="width: 100%; max-width: 720px; height: auto;" controls="" autoplay="" muted="" loop="" playsinline="">
+  <source src="/assets/videos/im-leaving/0.3.0-alpha.1-demo.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
 <h3 id="040-alpha3">0.4.0-alpha.3</h3>
 <p>Bullet is added in this update. For obvious reason Bullet is going to be a very finite resource. The
@@ -340,7 +358,10 @@ bullet trajectory physics is highly simplified. The bullets always travel in con
 unaffected by Player’s motion, height, or the gravity. And the bullets will always reach the grid at
 which the Crosshair aims when the mouse is clicked.</p>
 
-<p><img src="/assets/images/im-leaving/0.4.0-alpha.3-demo.gif" alt="0.4.0-alpha.3-demo" /></p>
+<video style="width: 100%; max-width: 720px; height: auto;" controls="" autoplay="" muted="" loop="" playsinline="">
+  <source src="/assets/videos/im-leaving/0.4.0-alpha.3-demo.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
 
 <p>That’s all the updates. Thanks for your curiosity!</p>
 <div class="footnotes" role="doc-endnotes">

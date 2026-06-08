@@ -28,7 +28,17 @@ demo to others. To better portray the idea to potential collaborators and
 testers, I decided to add a graphic placeholder to indicate when a landmine
 has been ignited.
 
-![0.5.0-alpha.2-demo-1]({{ site.baseurl }}/assets/images/im-leaving/0.5.0-alpha.2-demo-1.gif)
+<video
+  style="width: 100%; max-width: 720px; height: auto;"
+  controls
+  autoplay
+  muted
+  loop
+  playsinline
+>
+  <source src="{{ '/assets/videos/im-leaving/0.5.0-alpha.2-demo-1.mp4' | relative_url }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 #### The Jumps
 
@@ -39,8 +49,17 @@ agile gravity-defying movement in Chinese martial arts, reintroduced to modern
 pop culture by Jin Yong through his [wuxia series](https://en.wikipedia.org/wiki/Jin_Yong#Series)
 during the 50s to 70s.
 
-
-![0.5.0-alpha.2-demo-2]({{ site.baseurl }}/assets/images/im-leaving/0.5.0-alpha.2-demo-2.gif)
+<video
+  style="width: 100%; max-width: 720px; height: auto;"
+  controls
+  autoplay
+  muted
+  loop
+  playsinline
+>
+  <source src="{{ '/assets/videos/im-leaving/0.5.0-alpha.2-demo-2.mp4' | relative_url }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ---
 
@@ -50,7 +69,17 @@ triple jump, Player has a short time window near the peak to execute a
 precise jump to some grid position within a defined range. Activation readiness is
 indicated by the crosshair color changing from red to green.
 
-![0.5.0-alpha.2-demo-3]({{ site.baseurl }}/assets/images/im-leaving/0.5.0-alpha.2-demo-3.gif)
+<video
+  style="width: 100%; max-width: 720px; height: auto;"
+  controls
+  autoplay
+  muted
+  loop
+  playsinline
+>
+  <source src="{{ '/assets/videos/im-leaving/0.5.0-alpha.2-demo-3.mp4' | relative_url }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 The animation of the precise jump is of course just a visual placeholder at the
 moment. The sequence, starting with a thrust charge (indicated by the player blinking),
