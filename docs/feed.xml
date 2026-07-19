@@ -1,5 +1,294 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-06-08T21:40:25+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
-</subtitle><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><entry><title type="html">Devlog #2: I’m Leaving, Jump!</title><link href="https://searat.blog/game-development/2026/06/07/im-leaving-dev-2.html" rel="alternate" type="text/html" title="Devlog #2: I’m Leaving, Jump!" /><published>2026-06-07T00:00:00+02:00</published><updated>2026-06-07T00:00:00+02:00</updated><id>https://searat.blog/game-development/2026/06/07/im-leaving-dev-2</id><content type="html" xml:base="https://searat.blog/game-development/2026/06/07/im-leaving-dev-2.html"><![CDATA[<p>In this dev log, I’ll walk through some of the visual aids that have been added
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-07-19T19:24:10+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
+</subtitle><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><entry><title type="html">Hauntology of a Summer Brew</title><link href="https://searat.blog/brewery/demo/2026/07/19/hauntology-of-a-summer-brew.html" rel="alternate" type="text/html" title="Hauntology of a Summer Brew" /><published>2026-07-19T00:00:00+02:00</published><updated>2026-07-19T00:00:00+02:00</updated><id>https://searat.blog/brewery/demo/2026/07/19/hauntology-of-a-summer-brew</id><content type="html" xml:base="https://searat.blog/brewery/demo/2026/07/19/hauntology-of-a-summer-brew.html"><![CDATA[<p>I want to write about a project I have been preparing for some time. It is a
+microbrewery, built as a distributed cyber-physical system with automation services.</p>
+<figure>
+  <img src="/assets/images/brewery/site_250a.jpg" alt="Site 250A" />
+</figure>
+
+<blockquote>
+  <p>Site 250A<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup></p>
+</blockquote>
+
+<p>This project echoes a research paper<sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> I collaborated with David some years ago,
+where we examined the orchestration and integration techniques in digital twins
+through a microbrewery case study. This time, however, I do it for fun.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#architecture" id="markdown-toc-architecture">Architecture</a></li>
+  <li><a href="#construction" id="markdown-toc-construction">Construction</a>    <ul>
+      <li><a href="#clean-it-up" id="markdown-toc-clean-it-up">Clean It Up!</a></li>
+      <li><a href="#assembly" id="markdown-toc-assembly">Assembly</a></li>
+      <li><a href="#some-more-nerd-stuffs" id="markdown-toc-some-more-nerd-stuffs">Some More Nerd Stuffs</a></li>
+    </ul>
+  </li>
+  <li><a href="#buran-what" id="markdown-toc-buran-what">Buran What?</a></li>
+</ul>
+
+<h2 id="architecture">Architecture</h2>
+
+<p>Fermentation process control is the core of the system’s operation. The following
+diagram illustrates the architecture overview.</p>
+
+<figure>
+  <img src="/assets/images/brewery/BuranBrew_Overview.webp" alt="BuranBrew_Overview" />
+  <figcaption>BuranBrew architecture overview</figcaption>
+</figure>
+
+<p>For nerds, you can go to <a href="https://github.com/anderlee-nordic/BuranBrew">BuranBrew</a>
+project repository and check out the technical details. Otherwise, the
+diagram above provides all the context one needs for the rest of this blog post.</p>
+
+<p>The <em>AMNIN sensors</em> are a collection of sensors that are brought to the
+<a href="https://handbook.buildwithmatter.com/how-it-works/what-is-matter/">Matter</a> network.
+It monitors variables such as specific gravity (SG) as well as the ambient and internal temperatures
+of the fermentor. The controllers are also Matter-connected as they perform actions
+to impact the fermentation temperature.</p>
+
+<p>The <em>Control Model</em> is the brain of the system, it takes input, computes, and gives commands.</p>
+
+<p><em>Cellarman</em> is another automated service that streams and stores real-time data,
+visualizes it through a web dashboard, and triggers alerts when anomalies are detected.</p>
+
+<h2 id="construction">Construction</h2>
+<h3 id="clean-it-up">Clean It Up!</h3>
+
+<p>This is where the fun begins. All brewing begins with a simple chore: cleaning
+and sanitizing. In practice, though, this step involves far more faff than it sounds.
+It is best tackled by two people working in a pipeline. Thanks Jonathan for helping out!</p>
+
+<p>Cleaning, sanitizing, and sterilizing are three distinct processes
+with different purposes. Cleaning is the most relatable in daily life, removing
+visible filth and grease; as for sanitizing and sterilizing, the distinction is subtler.
+To quote John J Palmer:</p>
+
+<blockquote>
+  <p>Sanitized is not the same as sterile. Chemical agents used
+    by homebrewers will clean and sanitize, but will not sterilize or eliminate all bacterial spores and
+    viruses. This is okay; sterilization is usually not necessary in brewing, and brewers can be satisfied as
+    long as their sanitization procedure consistently reduces these contaminants to negligible levels. All
+    commercial beer is brewed in sanitized vessels; no production breweries sterilize their equipment,
+    as that would be impractical.</p>
+</blockquote>
+
+<figure>
+  <img src="/assets/images/brewery/cleaning_agent.jpg" alt="Cleaning Agents" />
+  <figcaption>Chemipro Wash and Chemipro SAN</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/images/brewery/cleaning_solution.jpg" alt="Cleaning Solution" />
+  <figcaption>Making the solution</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/images/brewery/cleaning_scene.jpg" alt="Cleaning Scene" />
+  <figcaption>Cleaning all equipment</figcaption>
+</figure>
+
+<p>In the meantime, also make sure to re-hydrate the dry yeast. For this batch, IPA,
+hereby I use 2x 11.5g of
+<a href="https://www.aeb-group.com/en/fermoale-new-e-14722">AEB FermoAle New-E</a>.</p>
+
+<figure>
+  <img src="/assets/images/brewery/yeast_hydration.jpg" alt="Yeast Hydration" />
+  <figcaption>Yeast hydration</figcaption>
+</figure>
+
+<p>Since I’m using a wort kit, so the mashing and boiling have already been done.
+I can skip these steps and go straight to fermentation. One day, one day when my
+&lt;insert ratio&gt;-life crisis hits again I’ll get my hands on those fancy
+<a href="https://www.ssbrewtech.com/products/ss-tc-brew-kettle?variant=18098333843527">brew kettles</a>.</p>
+
+<h3 id="assembly">Assembly</h3>
+
+<p>After sanitization, it’s time to put everything together.</p>
+
+<figure>
+  <img src="/assets/images/brewery/lid_top.png" alt="Top side of the lid" />
+  <figcaption>
+    Make sure the lock posts (gray ring and black ring) and the cooling post
+    are screwed tight.
+  </figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/images/brewery/cooling_coil.jpg" alt="Cooling Coil" />
+  <figcaption>The cooling coil</figcaption>
+</figure>
+
+<p>Transferring the fresh wort is also better done as two-man job. Before sealing
+the fermentor off, remember to add the hydrated yeast! Pressurizing the fermentor
+is not necessary as the pressure will build itself up during the fermentation.
+However, I like to do it mildly at the beginning as part of leak test.</p>
+
+<figure>
+  <img src="/assets/images/brewery/wort_transfer.jpg" alt="Wort Transfer" />
+  <figcaption>After wort transfer</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/images/brewery/top_down_view.jpg" alt="Top Down View" />
+  <figcaption>
+  The food thermometer does not need to be there as I have technology covering that
+  already, but it looks nice nonetheless.
+  </figcaption>
+</figure>
+
+<p>A heat pad and a water-cool bucket are controlled by BuranBrew. Adding some
+aluminum cardboard to block direct sunlight.</p>
+
+<figure>
+  <img src="/assets/images/brewery/full_setup.jpg" alt="Full Setup" />
+  <figcaption>The full setup with cooling unit installed</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/images/brewery/water_pump.jpg" alt="Water pump" />
+  <figcaption>The cooling unit is basically a water pump with some iced bottle</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/images/brewery/foaming.jpg" alt="Foaming" />
+  <figcaption>Foaming developed very rapidly in the first hours, hmmm...</figcaption>
+</figure>
+
+<h3 id="some-more-nerd-stuffs">Some More Nerd Stuffs</h3>
+
+<p>Circling back to the architecture, I’ll briefly go through the hardware in
+the physical space. On the Matter-facing side of the AMNIN sensors, I use an
+nRF54L15 tag, while on the hidden BLE side, I use a Tilt hydrometer.</p>
+
+<figure>
+  <img src="/assets/images/brewery/amnin_tag.jpg" alt="AMNIN tag" />
+  <figcaption>
+  The small tag can actually be powered by a coin cell too.
+  However, for this batch since I haven't done any power profiling yet,
+  I choose to play it safe by 3.3V supply</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/images/brewery/tilt_vendor.png" alt="Tilt store page" />
+  <figcaption>
+  The store page of the Tilt hydrometer. I have entrusted my liquid bread to them
+  for some years now.
+  </figcaption>
+</figure>
+
+<p>For the controllers I use IKEA’s GRILLPLATS plugs. I’m very happy to see manufacturers
+are
+<a href="https://www.ikea.com/global/en/newsroom/retail/the-new-smart-home-from-ikea-matter-compatible-251106/">starting to get onboard</a>
+with a common protocol. For years, at least within the smart home circle, the
+wireless protocol landscape has been a mess. To be honest, it still pretty much is<sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup>.</p>
+
+<figure>
+  <img src="/assets/images/brewery/control_plugs.jpg" alt="Control plugs" />
+  <figcaption>Very important to label the plugs!</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/images/brewery/ikea_matter.png" alt="IKEA Matter" />
+  <figcaption>
+  IKEA launched a new product line of Matter-compatible devices in the end of 2025.
+  However, they did not come bug-free. Many users reported issue in the earlier
+  firmware versions. Do your own research before committing is advisable.
+  </figcaption>
+</figure>
+
+<p>Last but not least, the Linux host that runs the tech stack, Caprisun PC.</p>
+<figure>
+  <img src="/assets/images/brewery/caprisun.jpg" alt="Caprisun PC" />
+  <figcaption>
+  Despite looking like a weakling, this is a full-fledged home server, with several
+  computer boards, a hard disk storage, a fan, and a power control hub inside.
+  </figcaption>
+</figure>
+
+<hr />
+
+<h2 id="buran-what">Buran What?</h2>
+
+<p>Buran (Буран, “blizzard” in Russian) was the name of both the Soviet spaceplane
+program and its orbital vehicle, which belonged to a classification known as the
+Buran-class orbiters. The Buran program was the USSR’s response to the
+American Space Shuttle program during the final decades of the Cold War.
+Buran made its first and only spaceflight on November 15 1988.
+The mission was completely uncrewed. Its fully automatic runway landing was
+regarded as a remarkable technical achievement.</p>
+
+<p>Following the dissolution of the USSR in 1991, funding largely disappeared.
+The program was formally terminated in 1993.</p>
+
+<figure>
+  <img src="/assets/images/brewery/energia_buran.jpg" alt="Energia-Buran" />
+  <figcaption>
+  Energia-Buran system on pad. Energia was the rocket which carried the payload, Buran.
+   </figcaption>
+</figure>
+
+<p>In this sense, the Buran programme can be understood through Mark Fisher’s
+concept of lost futures: ambitious visions of progress that once appeared
+tangible, yet vanished together with the political and economic systems that had
+made them imaginable. Buran is haunting not simply because the program failed,
+but because it preserves the outline of a future that was once treated as
+technically achievable. Its abandoned hangars and immense launch infrastructure
+contain the memory of a historical path that was interrupted before it could fully unfold.</p>
+
+<figure>
+  <img src="/assets/images/brewery/site_112_TUA.jpg" alt="TUA" />
+  <figcaption>
+  A transport and installation unit at site 112.
+  DRUGUI, 2010
+  </figcaption>
+</figure>
+
+<p>This is not nostalgia for the Soviet system. Rather, it is a synthetic
+memory of an alternative trajectory, a recollection of possibilities that were
+never personally experienced and can now be encountered only through fragments.
+The program evokes not only a different path for large-scale scientific planning,
+but a different form of life. Institution, everyday existence, and collective
+ambition might have followed priorities other than those of the capitalist order
+that prevailed after the Cold War.</p>
+
+<p>For myself, this hauntology<sup id="fnref:4"><a href="#fn:4" class="footnote" rel="footnote" role="doc-noteref">4</a></sup> is also personal. It lies in the sultry summer when I
+began the microbrewery project in the south of the Netherlands. At the time,
+the project seemed to open onto a particular future, one of scientific
+computing, biochemical modelling, and digital twins.</p>
+
+<p>That future did not disappear in a dramatic collapse. It receded gradually,
+through changes in work, place, and circumstance. I now live in a
+north country and work in a different engineering discipline.</p>
+
+<p>The comparison is deliberately disproportionate. A home brewery is not a
+space program. Yet hauntology often operates through precisely such
+mismatched scales. A vast abandoned spaceplane and a personal project can
+produce a similar sensation when both become evidence of futures that
+once felt close. The result is not simply regret, but a persistent awareness
+that futures are never determined by technical possibility alone.
+They depend on the fragile continuity of personal and collective desire.</p>
+
+<hr />
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Site 250A is 4.5 KM south of Yubileyniy Airfield, where the Buran spaceplane landed.
+DRUGUI, 2010. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>A. Lee, D. A. Manrique Negrin and L. Cleophas, “Evaluating Open-Source
+Tools for Heterogeneous Model-Based Digital Twin Development: A Microbrewery
+Case Study,” 2024 Annual Modeling and Simulation Conference (ANNSIM),
+Washington, D.C., DC, USA, 2024, pp. 1-13, doi: 10.23919/ANNSIM61499.2024.10732658. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>Take a look at this <a href="https://www.silabs.com/blog/smart-home-technology-comparison">chart</a>. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p>“Hauntology”, coined by Jacques Derrida in his 1993 book <em>Spectres of Marx</em>
+refers to the return or persistence of elements from the social or cultural
+past, as if to haunt the present. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><category term="brewery" /><category term="demo" /><summary type="html"><![CDATA[I want to write about a project I have been preparing for some time. It is a microbrewery, built as a distributed cyber-physical system with automation services.]]></summary></entry><entry><title type="html">Devlog #2: I’m Leaving, Jump!</title><link href="https://searat.blog/game-development/2026/06/07/im-leaving-dev-2.html" rel="alternate" type="text/html" title="Devlog #2: I’m Leaving, Jump!" /><published>2026-06-07T00:00:00+02:00</published><updated>2026-06-07T00:00:00+02:00</updated><id>https://searat.blog/game-development/2026/06/07/im-leaving-dev-2</id><content type="html" xml:base="https://searat.blog/game-development/2026/06/07/im-leaving-dev-2.html"><![CDATA[<p>In this dev log, I’ll walk through some of the visual aids that have been added
 to improve the development experience, along with the new jumping actions
 available to Player.</p>
 
@@ -273,6 +562,8 @@ pre-snapshot id number.</p>
 <p>It is important to remember that snapshots are a <em>rollback</em> strategy rather than a
 <em>backup</em> strategy. Since snapshot subvolumes reside within the same filesystem as
 the original subvolume, any disk failure or data corruption affects them all equally.</p>
+
+<hr />
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:1">
@@ -364,6 +655,8 @@ which the Crosshair aims when the mouse is clicked.</p>
 </video>
 
 <p>That’s all the updates. Thanks for your curiosity!</p>
+
+<hr />
 <div class="footnotes" role="doc-endnotes">
   <ol>
     <li id="fn:1">

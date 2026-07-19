@@ -233,3 +233,5 @@ sudo btrfs subvolume list /
 It is important to remember that snapshots are a *rollback* strategy rather than a
 *backup* strategy. Since snapshot subvolumes reside within the same filesystem as
 the original subvolume, any disk failure or data corruption affects them all equally.
+
+---
