@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>searat&apos;s blog</title>
+    <link>https://searat.blog/</link>
+    <description>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
+</description>
+    <language>en</language>
+    <lastBuildDate>Sat, 01 Aug 2026 23:31:24 +0200</lastBuildDate>
+    <atom:link href="https://searat.blog/rss.xml"
+               rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hauntology of a Summer Brew</title>
+      <link>https://searat.blog/brewery/demo/2026/07/19/hauntology-of-a-summer-brew.html</link>
+      <guid isPermaLink="true">https://searat.blog/brewery/demo/2026/07/19/hauntology-of-a-summer-brew.html</guid>
+      <pubDate>Sun, 19 Jul 2026 00:00:00 +0200</pubDate>
+      <description>&lt;p&gt;I want to write about a project I have been preparing for some time. It is a
+microbrewery, built as a distributed cyber-physical system with automation services.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/site_250a.jpg&quot; alt=&quot;Site 250A&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Site 250A&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This project echoes a research paper&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; I collaborated with David some years ago,
+where we examined the orchestration and integration techniques in digital twins
+through a microbrewery case study. This time, however, I do it for fun.&lt;/p&gt;
+
+&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#architecture&quot; id=&quot;markdown-toc-architecture&quot;&gt;Architecture&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#construction&quot; id=&quot;markdown-toc-construction&quot;&gt;Construction&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#clean-it-up&quot; id=&quot;markdown-toc-clean-it-up&quot;&gt;Clean It Up!&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#assembly&quot; id=&quot;markdown-toc-assembly&quot;&gt;Assembly&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#some-more-nerd-stuffs&quot; id=&quot;markdown-toc-some-more-nerd-stuffs&quot;&gt;Some More Nerd Stuffs&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#buran-what&quot; id=&quot;markdown-toc-buran-what&quot;&gt;Buran What?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;architecture&quot;&gt;Architecture&lt;/h2&gt;
+
+&lt;p&gt;Fermentation process control is the core of the system’s operation. The following
+diagram illustrates the architecture overview.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/BuranBrew_Overview.webp&quot; alt=&quot;BuranBrew_Overview&quot; /&gt;
+  &lt;figcaption&gt;BuranBrew architecture overview&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;For nerds, you can go to &lt;a href=&quot;https://github.com/anderlee-nordic/BuranBrew&quot;&gt;BuranBrew&lt;/a&gt;
+project repository and check out the technical details. Otherwise, the
+diagram above provides all the context one needs for the rest of this blog post.&lt;/p&gt;
+
+&lt;p&gt;The &lt;em&gt;AMNIN sensors&lt;/em&gt; are a collection of sensors that are brought to the
+&lt;a href=&quot;https://handbook.buildwithmatter.com/how-it-works/what-is-matter/&quot;&gt;Matter&lt;/a&gt; network.
+It monitors variables such as specific gravity (SG) as well as the ambient and internal temperatures
+of the fermentor. The controllers are also Matter-connected as they perform actions
+to impact the fermentation temperature.&lt;/p&gt;
+
+&lt;p&gt;The &lt;em&gt;Control Model&lt;/em&gt; is the brain of the system, it takes input, computes, and gives commands.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Cellarman&lt;/em&gt; is another automated service that streams and stores real-time data,
+visualizes it through a web dashboard, and triggers alerts when anomalies are detected.&lt;/p&gt;
+
+&lt;h2 id=&quot;construction&quot;&gt;Construction&lt;/h2&gt;
+&lt;h3 id=&quot;clean-it-up&quot;&gt;Clean It Up!&lt;/h3&gt;
+
+&lt;p&gt;This is where the fun begins. All brewing begins with a simple chore: cleaning
+and sanitizing. In practice, though, this step involves far more faff than it sounds.
+It is best tackled by two people working in a pipeline. Thanks Jonathan for helping out!&lt;/p&gt;
+
+&lt;p&gt;Cleaning, sanitizing, and sterilizing are three distinct processes
+with different purposes. Cleaning is the most relatable in daily life, removing
+visible filth and grease; as for sanitizing and sterilizing, the distinction is subtler.
+To quote John J Palmer:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Sanitized is not the same as sterile. Chemical agents used
+    by homebrewers will clean and sanitize, but will not sterilize or eliminate all bacterial spores and
+    viruses. This is okay; sterilization is usually not necessary in brewing, and brewers can be satisfied as
+    long as their sanitization procedure consistently reduces these contaminants to negligible levels. All
+    commercial beer is brewed in sanitized vessels; no production breweries sterilize their equipment,
+    as that would be impractical.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/cleaning_agent.jpg&quot; alt=&quot;Cleaning Agents&quot; /&gt;
+  &lt;figcaption&gt;Chemipro Wash and Chemipro SAN&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/cleaning_solution.jpg&quot; alt=&quot;Cleaning Solution&quot; /&gt;
+  &lt;figcaption&gt;Making the solution&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/cleaning_scene.jpg&quot; alt=&quot;Cleaning Scene&quot; /&gt;
+  &lt;figcaption&gt;Cleaning all equipment&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In the meantime, also make sure to re-hydrate the dry yeast. For this batch, IPA,
+hereby I use 2x 11.5g of
+&lt;a href=&quot;https://www.aeb-group.com/en/fermoale-new-e-14722&quot;&gt;AEB FermoAle New-E&lt;/a&gt;.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/yeast_hydration.jpg&quot; alt=&quot;Yeast Hydration&quot; /&gt;
+  &lt;figcaption&gt;Yeast hydration&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Since I’m using a wort kit, so the mashing and boiling have already been done.
+I can skip these steps and go straight to fermentation. One day, one day when my
+&amp;lt;insert ratio&amp;gt;-life crisis hits again I’ll get my hands on those fancy
+&lt;a href=&quot;https://www.ssbrewtech.com/products/ss-tc-brew-kettle?variant=18098333843527&quot;&gt;brew kettles&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;assembly&quot;&gt;Assembly&lt;/h3&gt;
+
+&lt;p&gt;After sanitization, it’s time to put everything together.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/lid_top.png&quot; alt=&quot;Top side of the lid&quot; /&gt;
+  &lt;figcaption&gt;
+    Make sure the lock posts (gray ring and black ring) and the cooling post
+    are screwed tight.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/cooling_coil.jpg&quot; alt=&quot;Cooling Coil&quot; /&gt;
+  &lt;figcaption&gt;The cooling coil&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Transferring the fresh wort is also better done as two-man job. Before sealing
+the fermentor off, remember to add the hydrated yeast! Pressurizing the fermentor
+is not necessary as the pressure will build itself up during the fermentation.
+However, I like to do it mildly at the beginning as part of leak test.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/wort_transfer.jpg&quot; alt=&quot;Wort Transfer&quot; /&gt;
+  &lt;figcaption&gt;After wort transfer&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/top_down_view.jpg&quot; alt=&quot;Top Down View&quot; /&gt;
+  &lt;figcaption&gt;
+  The food thermometer does not need to be there as I have technology covering that
+  already, but it looks nice nonetheless.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;A heat pad and a water-cool bucket are controlled by BuranBrew. Adding some
+aluminum cardboard to block direct sunlight.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/full_setup.jpg&quot; alt=&quot;Full Setup&quot; /&gt;
+  &lt;figcaption&gt;The full setup with cooling unit installed&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/water_pump.jpg&quot; alt=&quot;Water pump&quot; /&gt;
+  &lt;figcaption&gt;The cooling unit is basically a water pump with some iced bottle&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/foaming.jpg&quot; alt=&quot;Foaming&quot; /&gt;
+  &lt;figcaption&gt;Foaming developed very rapidly in the first hours, hmmm...&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h3 id=&quot;some-more-nerd-stuffs&quot;&gt;Some More Nerd Stuffs&lt;/h3&gt;
+
+&lt;p&gt;Circling back to the architecture, I’ll briefly go through the hardware in
+the physical space. On the Matter-facing side of the AMNIN sensors, I use an
+nRF54L15 tag, while on the hidden BLE side, I use a Tilt hydrometer.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/amnin_tag.jpg&quot; alt=&quot;AMNIN tag&quot; /&gt;
+  &lt;figcaption&gt;
+  The small tag can actually be powered by a coin cell too.
+  However, for this batch since I haven&apos;t done any power profiling yet,
+  I choose to play it safe by 3.3V supply&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/tilt_vendor.png&quot; alt=&quot;Tilt store page&quot; /&gt;
+  &lt;figcaption&gt;
+  The store page of the Tilt hydrometer. I have entrusted my liquid bread to them
+  for some years now.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;For the controllers I use IKEA’s GRILLPLATS plugs. I’m very happy to see manufacturers
+are
+&lt;a href=&quot;https://www.ikea.com/global/en/newsroom/retail/the-new-smart-home-from-ikea-matter-compatible-251106/&quot;&gt;starting to get onboard&lt;/a&gt;
+with a common protocol. For years, at least within the smart home circle, the
+wireless protocol landscape has been a mess. To be honest, it still pretty much is&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/control_plugs.jpg&quot; alt=&quot;Control plugs&quot; /&gt;
+  &lt;figcaption&gt;Very important to label the plugs!&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/ikea_matter.png&quot; alt=&quot;IKEA Matter&quot; /&gt;
+  &lt;figcaption&gt;
+  IKEA launched a new product line of Matter-compatible devices in the end of 2025.
+  However, they did not come bug-free. Many users reported issue in the earlier
+  firmware versions. Do your own research before committing is advisable.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Last but not least, the Linux host that runs the tech stack, Caprisun PC.&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/caprisun.jpg&quot; alt=&quot;Caprisun PC&quot; /&gt;
+  &lt;figcaption&gt;
+  Despite looking like a weakling, this is a full-fledged home server, with several
+  computer boards, a hard disk storage, a fan, and a power control hub inside.
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;buran-what&quot;&gt;Buran What?&lt;/h2&gt;
+
+&lt;p&gt;Buran (Буран, “blizzard” in Russian) was the name of both the Soviet spaceplane
+program and its orbital vehicle, which belonged to a classification known as the
+Buran-class orbiters. The Buran program was the USSR’s response to the
+American Space Shuttle program during the final decades of the Cold War.
+Buran made its first and only spaceflight on November 15 1988.
+The mission was completely uncrewed. Its fully automatic runway landing was
+regarded as a remarkable technical achievement.&lt;/p&gt;
+
+&lt;p&gt;Following the dissolution of the USSR in 1991, funding largely disappeared.
+The program was formally terminated in 1993.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/energia_buran.jpg&quot; alt=&quot;Energia-Buran&quot; /&gt;
+  &lt;figcaption&gt;
+  Energia-Buran system on pad. Energia was the rocket which carried the payload, Buran.
+   &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In this sense, the Buran programme can be understood through Mark Fisher’s
+concept of lost futures: ambitious visions of progress that once appeared
+tangible, yet vanished together with the political and economic systems that had
+made them imaginable. Buran is haunting not simply because the program failed,
+but because it preserves the outline of a future that was once treated as
+technically achievable. Its abandoned hangars and immense launch infrastructure
+contain the memory of a historical path that was interrupted before it could fully unfold.&lt;/p&gt;
+
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/brewery/site_112_TUA.jpg&quot; alt=&quot;TUA&quot; /&gt;
+  &lt;figcaption&gt;
+  A transport and installation unit at site 112.
+  DRUGUI, 2010
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;This is not nostalgia for the Soviet system. Rather, it is a synthetic
+memory of an alternative trajectory, a recollection of possibilities that were
+never personally experienced and can now be encountered only through fragments.
+The program evokes not only a different path for large-scale scientific planning,
+but a different form of life. Institution, everyday existence, and collective
+ambition might have followed priorities other than those of the capitalist order
+that prevailed after the Cold War.&lt;/p&gt;
+
+&lt;p&gt;For myself, this hauntology&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; is also personal. It lies in the sultry summer when I
+began the microbrewery project in the south of the Netherlands. At the time,
+the project seemed to open onto a particular future, one of scientific
+computing, biochemical modelling, and digital twins.&lt;/p&gt;
+
+&lt;p&gt;That future did not disappear in a dramatic collapse. It receded gradually,
+through changes in work, place, and circumstance. I now live in a
+north country and work in a different engineering discipline.&lt;/p&gt;
+
+&lt;p&gt;The comparison is deliberately disproportionate. A home brewery is not a
+space program. Yet hauntology often operates through precisely such
+mismatched scales. A vast abandoned spaceplane and a personal project can
+produce a similar sensation when both become evidence of futures that
+once felt close. The result is not simply regret, but a persistent awareness
+that futures are never determined by technical possibility alone.
+They depend on the fragile continuity of personal and collective desire.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;Site 250A is 4.5 KM south of Yubileyniy Airfield, where the Buran spaceplane landed.
+DRUGUI, 2010. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;A. Lee, D. A. Manrique Negrin and L. Cleophas, “Evaluating Open-Source
+Tools for Heterogeneous Model-Based Digital Twin Development: A Microbrewery
+Case Study,” 2024 Annual Modeling and Simulation Conference (ANNSIM),
+Washington, D.C., DC, USA, 2024, pp. 1-13, doi: 10.23919/ANNSIM61499.2024.10732658. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;Take a look at this &lt;a href=&quot;https://www.silabs.com/blog/smart-home-technology-comparison&quot;&gt;chart&lt;/a&gt;. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;“Hauntology”, coined by Jacques Derrida in his 1993 book &lt;em&gt;Spectres of Marx&lt;/em&gt;
+refers to the return or persistence of elements from the social or cultural
+past, as if to haunt the present. &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Devlog #2: I&apos;m Leaving, Jump!</title>
+      <link>https://searat.blog/game-development/2026/06/07/im-leaving-dev-2.html</link>
+      <guid isPermaLink="true">https://searat.blog/game-development/2026/06/07/im-leaving-dev-2.html</guid>
+      <pubDate>Sun, 07 Jun 2026 00:00:00 +0200</pubDate>
+      <description>&lt;p&gt;In this dev log, I’ll walk through some of the visual aids that have been added
+to improve the development experience, along with the new jumping actions
+available to Player.&lt;/p&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;strong&gt;Articles in the series&lt;/strong&gt;&lt;/summary&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;/game-development/2026/04/30/im-leaving-dev-1.html&quot;&gt;Devlog #1: I’m Leaving&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/game-development/2026/06/07/im-leaving-dev-2.html&quot;&gt;Devlog #2: I’m Leaving, Jump!&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/details&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;050-alpha2&quot;&gt;0.5.0-alpha.2&lt;/h3&gt;
+&lt;h4 id=&quot;the-explosions&quot;&gt;The Explosions&lt;/h4&gt;
+
+&lt;p&gt;In the previous versions landmines were simply marked as ‘X’ when being shot at
+or stepped on. I quickly realized that it wasn’t very intuitive when showing the
+demo to others. To better portray the idea to potential collaborators and
+testers, I decided to add a graphic placeholder to indicate when a landmine
+has been ignited.&lt;/p&gt;
+
+&lt;video style=&quot;width: 100%; max-width: 720px; height: auto;&quot; controls=&quot;&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot; playsinline=&quot;&quot;&gt;
+  &lt;source src=&quot;/assets/videos/im-leaving/0.5.0-alpha.2-demo-1.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;h4 id=&quot;the-jumps&quot;&gt;The Jumps&lt;/h4&gt;
+
+&lt;p&gt;Player now can do a double or a triple jump, intended as an unlockable skill/technique
+in the full game. While these mechanics are common in action games, the idea which inspired
+me specifically was the &lt;a href=&quot;https://en.wikipedia.org/wiki/Qinggong&quot;&gt;Qinggong (輕功)&lt;/a&gt;, an
+agile gravity-defying movement in Chinese martial arts, reintroduced to modern
+pop culture by Jin Yong through his &lt;a href=&quot;https://en.wikipedia.org/wiki/Jin_Yong#Series&quot;&gt;wuxia series&lt;/a&gt;
+during the 50s to 70s.&lt;/p&gt;
+
+&lt;video style=&quot;width: 100%; max-width: 720px; height: auto;&quot; controls=&quot;&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot; playsinline=&quot;&quot;&gt;
+  &lt;source src=&quot;/assets/videos/im-leaving/0.5.0-alpha.2-demo-2.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Another jumping technique I implemented is the “precise jump”. It is
+designed to be used in combination with the triple jump. After performing a
+triple jump, Player has a short time window near the peak to execute a
+precise jump to some grid position within a defined range. Activation readiness is
+indicated by the crosshair color changing from red to green.&lt;/p&gt;
+
+&lt;video style=&quot;width: 100%; max-width: 720px; height: auto;&quot; controls=&quot;&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot; playsinline=&quot;&quot;&gt;
+  &lt;source src=&quot;/assets/videos/im-leaving/0.5.0-alpha.2-demo-3.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;p&gt;The animation of the precise jump is of course just a visual placeholder at the
+moment. The sequence, starting with a thrust charge (indicated by the player blinking),
+followed by a linear acceleration toward the target grid, is heavily inspired by
+the &lt;a href=&quot;https://en.wikipedia.org/wiki/Warp_drive&quot;&gt;warp drive&lt;/a&gt; from the Star Trek series.
+In particular, the charging and thrust aesthetics aim to emulate the USS Enterprise
+in &lt;em&gt;Star Trek: The Next Generation&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/im-leaving/star-trek-tng-warp.gif&quot; alt=&quot;star-trek-tng-warp&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s all the updates. Thanks for your curiosity!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Snapshots in BTRFS</title>
+      <link>https://searat.blog/linux/2026/05/23/snapshots-in-btrfs.html</link>
+      <guid isPermaLink="true">https://searat.blog/linux/2026/05/23/snapshots-in-btrfs.html</guid>
+      <pubDate>Sat, 23 May 2026 00:00:00 +0200</pubDate>
+      <description>&lt;p&gt;Similar to doomsday prepping, system snapshots are often overlooked and mocked for
+“being right once” when extraordinary catastrophe arrives.&lt;/p&gt;
+
+&lt;p&gt;As Fedora 44 is being rolled out, I’ve came upon that time of the year to review my
+system restoration strategy. And to be honest, most of the steps can be answered
+easily by AI chatbots nowadays. However, for matters as critical as system integrity,
+the old-school side of me still prefers to refer to a static hand-typed note
+that has been tested by experience, especially in this era where information
+promptness (pun intended) and digestibility are valued over accuracy and deep
+consideration. Consider this post as my system admin note-to-self.&lt;/p&gt;
+
+&lt;h2 id=&quot;btrfs&quot;&gt;Btrfs&lt;/h2&gt;
+&lt;p&gt;As of today both openSUSE and Fedora ship their distro with btrfs by default. btrfs
+was originally proposed by Ohad Rodeh at IBM during 2007. There’s also a paper&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;
+authored by him outlining the overall concepts and architecture. Two features of
+btrfs that became imperative to snapshot are &lt;strong&gt;CoW&lt;/strong&gt; (Copy on Write) and
+&lt;strong&gt;subvolume&lt;/strong&gt;. CoW enables the modified data to be copied while keeping the old
+data intact, allowing both the old and the new inodes to coexist; subvolume defines the
+boundary of a snapshot. A lot more details can be discussed, my favorite is a
+series&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; of high quality articles published on Fedora Magazine, see the footnotes.&lt;/p&gt;
+
+&lt;h2 id=&quot;snapshot-with-snapper&quot;&gt;Snapshot with snapper&lt;/h2&gt;
+
+&lt;p&gt;One could configure snapshot using the btrfs commands alone, but I prefer a tool like
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;snapper&lt;/code&gt;&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;3&lt;/a&gt;&lt;/sup&gt; for convenience. There’s also a GUI tool called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;btrfs-assistant&lt;/code&gt;&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;4&lt;/a&gt;&lt;/sup&gt; but I
+lack the experience with it.&lt;/p&gt;
+
+&lt;p&gt;On Fedora &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;snapper&lt;/code&gt; can be installed via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dnf&lt;/code&gt;. It is also recommended to install
+libdnf5 callback hooks for dnf integration, so that snapshots can be automatically
+taken &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pre_transaction&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post_transaction&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;dnf &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; snapper libdnf5-plugin-actions
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And then create snapper configuration for root file system &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; root create-config /
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Afterwards, check that config &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;root&lt;/code&gt; and subvolume &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/&lt;/code&gt; appear:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper list-configs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Enable timer in systemd for automatic snapshot and cleanup:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--now&lt;/span&gt; snapper-timeline.timer
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--now&lt;/span&gt; snapper-cleanup.timer
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Check that snapper has the correct SELinux context:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Zd&lt;/span&gt; /.snapshots
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Expect to see:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;drwxr-x---. 1 root root system_u:object_r:snapperd_data_t:s0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To configure the behaviors, edit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/etc/snapper/configs/root&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# subvolume to snapshot
+SUBVOLUME=&quot;/&quot;
+
+# filesystem type
+FSTYPE=&quot;btrfs&quot;
+
+
+# btrfs qgroup for space aware cleanup algorithms
+QGROUP=&quot;&quot;
+
+
+# fraction or absolute size of the filesystems space the snapshots may use
+SPACE_LIMIT=&quot;0.5&quot;
+
+# fraction or absolute size of the filesystems space that should be free
+FREE_LIMIT=&quot;0.2&quot;
+
+
+# users and groups allowed to work with config
+ALLOW_USERS=&quot;&quot;
+ALLOW_GROUPS=&quot;&quot;
+
+# sync users and groups from ALLOW_USERS and ALLOW_GROUPS to .snapshots
+# directory
+SYNC_ACL=&quot;no&quot;
+
+
+# start comparing pre- and post-snapshot in background after creating
+# post-snapshot
+BACKGROUND_COMPARISON=&quot;yes&quot;
+
+
+# run daily number cleanup
+NUMBER_CLEANUP=&quot;yes&quot;
+
+# limit for number cleanup
+NUMBER_MIN_AGE=&quot;3600&quot;
+NUMBER_LIMIT=&quot;30&quot;
+NUMBER_LIMIT_IMPORTANT=&quot;10&quot;
+
+
+# create hourly snapshots
+TIMELINE_CREATE=&quot;yes&quot;
+
+# cleanup hourly snapshots after some time
+TIMELINE_CLEANUP=&quot;yes&quot;
+
+# limits for timeline cleanup
+TIMELINE_MIN_AGE=&quot;3600&quot;
+TIMELINE_LIMIT_HOURLY=&quot;6&quot;
+TIMELINE_LIMIT_DAILY=&quot;7&quot;
+TIMELINE_LIMIT_WEEKLY=&quot;4&quot;
+TIMELINE_LIMIT_MONTHLY=&quot;3&quot;
+TIMELINE_LIMIT_QUARTERLY=&quot;0&quot;
+TIMELINE_LIMIT_YEARLY=&quot;0&quot;
+
+
+# cleanup empty pre-post-pairs
+EMPTY_PRE_POST_CLEANUP=&quot;yes&quot;
+
+# limits for empty pre-post-pair cleanup
+EMPTY_PRE_POST_MIN_AGE=&quot;3600&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NUMBER_MIN_AGE=&quot;3600&quot;&lt;/code&gt; means “do not delete a numbered snapshot less than 1 hour old.”&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NUMBER_LIMIT=&quot;30&quot;&lt;/code&gt; means “keep up to 30 regular numbered snapshots.” Each &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dnf&lt;/code&gt;
+update equals two snapshots due to pre and post.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TIMELINE_LIMIT_HOURLY=&quot;6&quot;&lt;/code&gt; means “keep the last 6 hourly snapshots.”&lt;/p&gt;
+
+&lt;p&gt;From now on snapper will automatically take snapshots based on timeline and
+transaction, such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dnf&lt;/code&gt;. To check the snapshots, use:&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It is optional to enable btrfs qgroups so that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;snapper list&lt;/code&gt; will display the used
+space by each snapshot.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;btrfs quota &lt;span class=&quot;nb&quot;&gt;enable&lt;/span&gt; /
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;btrfs quota rescan &lt;span class=&quot;nt&quot;&gt;-w&lt;/span&gt; /
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;However, my experience is that it will make &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;snapper list&lt;/code&gt; run very slow.
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;--disable-used-space&lt;/code&gt; can be added to the list command to bypass calculating. I
+prefer to disable qgroups and just use the btrfs commands:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;btrfs filesystem &lt;span class=&quot;nb&quot;&gt;du&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /.snapshots/&amp;lt;number&amp;gt;/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Before I ran the Fedora upgrade, I created a pre-snapshot, giving a description
+after &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-d&lt;/code&gt; and printing the id number with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-p&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper create &lt;span class=&quot;nt&quot;&gt;--type&lt;/span&gt; pre &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;upgrade from fedora 43&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;And immediately after the upgrade, I created a post-snapshot and linked it with the
+pre-snapshot id number.&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper create &lt;span class=&quot;nt&quot;&gt;--type&lt;/span&gt; post &lt;span class=&quot;nt&quot;&gt;--pre-number&lt;/span&gt; &amp;lt;id_pre&amp;gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;upgraded to fedora 44&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;cheatsheet&quot;&gt;Cheatsheet&lt;/h2&gt;
+&lt;p&gt;Here is a cheatsheet of some common commands&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Create a normal manual snapshot&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper create &lt;span class=&quot;nt&quot;&gt;--description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;my snapshot&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Mark snapshot before a system change (upgrade, install, etc.)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper create &lt;span class=&quot;nt&quot;&gt;--type&lt;/span&gt; pre &lt;span class=&quot;nt&quot;&gt;--print-number&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;before upgrade&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Mark snapshot after the change (pairs with PRE)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper create &lt;span class=&quot;nt&quot;&gt;--type&lt;/span&gt; post &lt;span class=&quot;nt&quot;&gt;--pre-number&lt;/span&gt; &amp;lt;id_pre&amp;gt; &lt;span class=&quot;nt&quot;&gt;--description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;after upgrade&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Create snapshot with automatic cleanup policy&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper create &lt;span class=&quot;nt&quot;&gt;--description&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;test&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--cleanup-algorithm&lt;/span&gt; number
+
+&lt;span class=&quot;c&quot;&gt;# Show file-level changes between two snapshots&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper status &amp;lt;id_pre&amp;gt;..&amp;lt;id_post&amp;gt;
+
+&lt;span class=&quot;c&quot;&gt;# Show detailed diff of changes between snapshots&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper diff &amp;lt;id_pre&amp;gt;..&amp;lt;id_post&amp;gt;
+
+&lt;span class=&quot;c&quot;&gt;# Revert filesystem changes between PRE and POST snapshot pair&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper undochange &amp;lt;id_pre&amp;gt;..&amp;lt;id_post&amp;gt;
+
+&lt;span class=&quot;c&quot;&gt;# Roll entire system state back to a snapshot (boot-level rollback)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper rollback &amp;lt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Delete a single snapshot&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper delete &amp;lt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Delete a range of snapshots&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper delete &amp;lt;id1&amp;gt;-&amp;lt;id2&amp;gt;
+
+&lt;span class=&quot;c&quot;&gt;# Remove old timeline snapshots based on config rules&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper cleanup timeline
+
+&lt;span class=&quot;c&quot;&gt;# Remove snapshots based on numbering policy&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper cleanup number
+
+&lt;span class=&quot;c&quot;&gt;# Show current config values&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper get-config
+
+&lt;span class=&quot;c&quot;&gt;# Modify snapper configuration&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;snapper set-config &lt;span class=&quot;s2&quot;&gt;&quot;KEY=VALUE&quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# List all subvolumes and snapshots&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;btrfs subvolume list /
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;final-remark&quot;&gt;Final Remark&lt;/h2&gt;
+&lt;p&gt;It is important to remember that snapshots are a &lt;em&gt;rollback&lt;/em&gt; strategy rather than a
+&lt;em&gt;backup&lt;/em&gt; strategy. Since snapshot subvolumes reside within the same filesystem as
+the original subvolume, any disk failure or data corruption affects them all equally.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.researchgate.net/publication/262177144_BTRFS_The_linux_B-tree_filesystem&quot;&gt;BTRFS: The linux B-tree filesystem&lt;/a&gt; &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:2&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://fedoramagazine.org/working-with-btrfs-general-concepts/&quot;&gt;Fedora Magazine - Working with Btrfs&lt;/a&gt; &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://github.com/openSUSE/snapper&quot;&gt;openSUSE snapper&lt;/a&gt; &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:4&quot;&gt;
+      &lt;p&gt;&lt;a href=&quot;https://gitlab.com/btrfs-assistant/btrfs-assistant&quot;&gt;Btrfs Assistant&lt;/a&gt; &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Devlog #1: I&apos;m Leaving</title>
+      <link>https://searat.blog/game-development/2026/04/30/im-leaving-dev-1.html</link>
+      <guid isPermaLink="true">https://searat.blog/game-development/2026/04/30/im-leaving-dev-1.html</guid>
+      <pubDate>Thu, 30 Apr 2026 00:00:00 +0200</pubDate>
+      <description>&lt;p&gt;This is the first devlog of my game: &lt;em&gt;I’m Leaving&lt;/em&gt;. It is still a working title before
+something better pops up. In short, this game is a crossover between retro minesweeper
+game and 2D top-down shooter. As the title suggests, the player is trapped in a field of
+landmines and adversaries. The objective is simple: leaving the scene alive.&lt;/p&gt;
+
+&lt;p&gt;The game is written in Lua using Löve, aka love2d, engine. I’m new to Lua and a very
+novice game developer.&lt;/p&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;strong&gt;Articles in the series&lt;/strong&gt;&lt;/summary&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;/game-development/2026/04/30/im-leaving-dev-1.html&quot;&gt;Devlog #1: I’m Leaving&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/game-development/2026/06/07/im-leaving-dev-2.html&quot;&gt;Devlog #2: I’m Leaving, Jump!&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/details&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;010-alpha1&quot;&gt;0.1.0-alpha.1&lt;/h3&gt;
+&lt;p&gt;Adding basic Player&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot; role=&quot;doc-noteref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; object with WASD movement, jumping, and shadow. Camera follows the Player.
+The World is just a grid; plain and boring.&lt;/p&gt;
+
+&lt;video style=&quot;width: 100%; max-width: 720px; height: auto;&quot; controls=&quot;&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot; playsinline=&quot;&quot;&gt;
+  &lt;source src=&quot;/assets/videos/im-leaving/0.1.0-alpha.1-demo.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;h3 id=&quot;020-alpha1&quot;&gt;0.2.0-alpha.1&lt;/h3&gt;
+&lt;p&gt;Trail of footprints added. Player now has a visual record of the trodden grids. I added a small delay
+for the appearance of the footprint after Player has entered a grid so that it feels more natural as if
+the Player “leaves the tracks behind”.&lt;/p&gt;
+
+&lt;p&gt;Corsshair is added too. It follows the mouse cursor. The grid aimed by the Crosshair will have
+visual highlight.&lt;/p&gt;
+
+&lt;video style=&quot;width: 100%; max-width: 720px; height: auto;&quot; controls=&quot;&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot; playsinline=&quot;&quot;&gt;
+  &lt;source src=&quot;/assets/videos/im-leaving/0.2.0-alpha.1-demo.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;h3 id=&quot;030-alpha1&quot;&gt;0.3.0-alpha.1&lt;/h3&gt;
+&lt;p&gt;Finally adding landmines to a minesweeper-theme game. Landmines are attribute of World.
+For now the random function follows uniform distribution. The numbers which indicate nearby
+mines are computed on-the-fly rather than being precalculated. This is because later on I want
+to experiment with the abilities to destroy mines (by the Player) and to bury new mines
+(by the adversaries).&lt;/p&gt;
+
+&lt;p&gt;When Player steps on a mined grid (marked by ‘X’), they will be blown up. The fly-off mechanism is
+the same as jumping, but slightly higher and in a random direction. So essentially being
+blown up is an involuntary jump. To make things simple, voluntary and involuntary jumps are mutually
+exclusive. Until now I haven’t really use the physics engine offered by love2d, since I decided with
+myself, that, unless I need all three Newton’s laws of motion and beyond, a physics engine is probably
+too overkill for me.&lt;/p&gt;
+
+&lt;p&gt;By the way starting from this update I flip the background to dark color, simply because sometime I
+work on the game at night and that makes it better for the eyes.&lt;/p&gt;
+
+&lt;video style=&quot;width: 100%; max-width: 720px; height: auto;&quot; controls=&quot;&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot; playsinline=&quot;&quot;&gt;
+  &lt;source src=&quot;/assets/videos/im-leaving/0.3.0-alpha.1-demo.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;h3 id=&quot;040-alpha3&quot;&gt;0.4.0-alpha.3&lt;/h3&gt;
+&lt;p&gt;Bullet is added in this update. For obvious reason Bullet is going to be a very finite resource. The
+bullet trajectory physics is highly simplified. The bullets always travel in constant velocity,
+unaffected by Player’s motion, height, or the gravity. And the bullets will always reach the grid at
+which the Crosshair aims when the mouse is clicked.&lt;/p&gt;
+
+&lt;video style=&quot;width: 100%; max-width: 720px; height: auto;&quot; controls=&quot;&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot; playsinline=&quot;&quot;&gt;
+  &lt;source src=&quot;/assets/videos/im-leaving/0.4.0-alpha.3-demo.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;p&gt;That’s all the updates. Thanks for your curiosity!&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot;&gt;
+      &lt;p&gt;Henceforth, capitalized words indicate class objects. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>My first post!</title>
+      <link>https://searat.blog/demo/2026/04/19/my-first-post.html</link>
+      <guid isPermaLink="true">https://searat.blog/demo/2026/04/19/my-first-post.html</guid>
+      <pubDate>Sun, 19 Apr 2026 00:00:00 +0200</pubDate>
+      <description>&lt;p&gt;This is my very first post. Yay!&lt;/p&gt;
+
+&lt;p&gt;The website is still under construction. I’ve added a &lt;strong&gt;Categories&lt;/strong&gt; link where posts are
+grouped by category; and an &lt;strong&gt;Archive&lt;/strong&gt; link where posts are grouped and sorted (newest first)
+by date. Both of which can be found on the top right navigation area of the website.&lt;/p&gt;
+
+&lt;p&gt;I’m also going to add a few more social links so if anyone is interested in reaching me elsewhere,
+they will have that option.&lt;/p&gt;
+
+&lt;p&gt;This post is categorized as “demo” since it doesn’t really contain anything other than meta-content.
+Hopefully I’m going to deliver a meaningful article soon!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
