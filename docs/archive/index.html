@@ -109,14 +109,66 @@
       </div>
     </div>
 
-    <div class="social-links"><ul class="social-media-list"><li>
-    <a rel="me" href="https://bsky.app/profile/searat.blog" target="_blank" title="Bluesky">
+    <div class="social-links"><style>
+  /* Every social button has the same outer height */
+  .social-media-list li a {
+    box-sizing: border-box;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+  }
+
+  /* Image badges should not reserve inline baseline space */
+  .social-media-list li a img {
+    display: block;
+    width: auto;
+  }
+
+  /* No surrounding border or horizontal padding for image badges */
+  .social-media-list li a.rss-badge,
+  .social-media-list li a.smallweb-badge {
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .social-media-list li a.rss-badge img {
+    height: 20px;
+  }
+
+  .social-media-list li a.smallweb-badge img {
+    height: 31px;
+  }
+</style>
+
+<ul class="social-media-list"><li>
+    <a
+      rel="me"
+      href="https://bsky.app/profile/searat.blog"
+      target="_blank"
+      title="Bluesky"
+    >
       <span class="grey fa-brands fa-bluesky fa-lg"></span>
+    </a>
+  </li><li>
+    <a
+      rel="me"
+      href="https://searat.itch.io/"
+      target="_blank"
+      title="itch.io"
+    >
+      <span class="grey fa-brands fa-itch-io fa-lg"></span>
     </a>
   </li>
   <li>
-    <a href="https://searat.blog/feed.xml" target="_blank" title="Subscribe to syndication feed">
-      <svg class="svg-icon grey" viewbox="0 0 16 16">
+    <a
+      href="https://searat.blog/feed.xml"
+      target="_blank"
+      title="Subscribe to syndication feed"
+    >
+      <svg class="svg-icon grey" viewBox="0 0 16 16">
         <path d="M12.8 16C12.8 8.978 7.022 3.2 0 3.2V0c8.777 0 16 7.223 16 16h-3.2zM2.194
           11.61c1.21 0 2.195.985 2.195 2.196 0 1.21-.99 2.194-2.2 2.194C.98 16 0 15.017 0
           13.806c0-1.21.983-2.195 2.194-2.195zM10.606
@@ -125,14 +177,42 @@
       </svg>
     </a>
   </li>
-<li>
-  <a href="https://iheartrss.com/" target="_blank" rel="noopener" title="I love RSS">
-    <picture>
-      <source srcset="https://iheartrss.com/iheartrss-dark.svg" media="(prefers-color-scheme: dark)">
-      <img src="https://iheartrss.com/iheartrss.svg" alt="I love RSS" height="20" style="width: auto;">
-    </picture>
-  </a>
-</li>
+
+  <li>
+    <a
+      class="rss-badge"
+      href="https://iheartrss.com/"
+      target="_blank"
+      rel="noopener"
+      title="I love RSS"
+    >
+      <picture>
+        <source
+          srcset="https://iheartrss.com/iheartrss-dark.svg"
+          media="(prefers-color-scheme: dark)"
+        >
+        <img
+          src="https://iheartrss.com/iheartrss.svg"
+          alt="I love RSS"
+        >
+      </picture>
+    </a>
+  </li>
+
+  <li>
+    <a
+      class="smallweb-badge"
+      href="https://kagi.com/smallweb"
+      target="_blank"
+      rel="noopener"
+      title="Kagi Small Web"
+    >
+      <img
+        src="https://camo.githubusercontent.com/05046a28621d58344a06ba01b0c99bd44538f39c5a01e4e3b769f57de2f3f61c/68747470733a2f2f6b616769666565646261636b2e6f72672f6173736574732f66696c65732f323032352d31312d32372f313736343235303937332d3730383336392d38387833312d322e676966"
+        alt="Kagi Small Web"
+      >
+    </a>
+  </li>
 </ul>
 </div>
 

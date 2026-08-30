@@ -64,3 +64,6 @@ minima:
     - title: Bluesky
       icon: bluesky
       url: "https://bsky.app/profile/searat.blog"
+    - title: itch.io 
+      icon: itch-io
+      url: "https://searat.itch.io/"
