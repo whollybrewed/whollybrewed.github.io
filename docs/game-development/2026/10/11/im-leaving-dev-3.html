@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Devlog #3: I’m Leaving, Offense/Defense | searat’s blog</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Devlog #3: I’m Leaving, Offense/Defense" />
+<meta name="author" content="searat" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="From The Offspring’s 1998 single The Kids Aren’t Alright:" />
+<meta name="twitter:description" property="og:description" content="From The Offspring’s 1998 single The Kids Aren’t Alright:" />
+<link rel="canonical" href="https://searat.blog/game-development/2026/10/11/im-leaving-dev-3.html" />
+<meta property="og:url" content="https://searat.blog/game-development/2026/10/11/im-leaving-dev-3.html" />
+<meta property="og:site_name" content="searat’s blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-10-11T00:00:00+02:00" />
+<meta property="article:modified_time" content="2026-10-11T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Devlog #3: I’m Leaving, Offense/Defense" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"searat"},"dateModified":"2026-10-11T00:00:00+02:00","datePublished":"2026-10-11T00:00:00+02:00","description":"From The Offspring’s 1998 single The Kids Aren’t Alright:","headline":"Devlog #3: I’m Leaving, Offense/Defense","mainEntityOfPage":{"@type":"WebPage","@id":"https://searat.blog/game-development/2026/10/11/im-leaving-dev-3.html"},"url":"https://searat.blog/game-development/2026/10/11/im-leaving-dev-3.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link id="main-stylesheet" rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://searat.blog/feed.xml" title="searat&apos;s blog" /><link rel="icon" type="image/png" href="/icons/favicon-96x96.png?v=1" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg?v=1" />
+<link rel="shortcut icon" href="/icons/favicon.ico?v=1" />
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png?v=1" />
+<meta name="apple-mobile-web-app-title" content="Searat" />
+<link rel="manifest" href="/icons/site.webmanifest?v=1" />
+
+<link rel="alternate" type="application/rss+xml"
+      title="searat's blog" href="https://searat.blog/rss.xml">
+
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    }
+  };
+</script>
+<script defer
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="/">searat&#39;s blog</a>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon"></span>
+        </label>
+
+        <div class="nav-items">
+  <a class="nav-item" href="/about/">About</a>
+  <a class="nav-item" href="/categories/">Categories</a>
+  <a class="nav-item" href="/archive/">Archive</a>
+</div>
+
+      </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Devlog #3: I&#39;m Leaving, Offense/Defense</h1>
+    <div class="post-meta">
+      <time class="dt-published" datetime="2026-10-11T00:00:00+02:00" itemprop="datePublished">
+        2026-10-11
+      </time>
+    </div>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>From The Offspring’s 1998 single
+<a href="https://youtu.be/7iNbnineUCI?si=DO4jFsMdz2_uJoZS"><em>The Kids Aren’t Alright</em></a>:</p>
+<figure>
+  <img src="/assets/images/im-leaving/the_offspring.jpg" alt="The Offspring – The Kids Aren't Alright" />
+</figure>
+
+<blockquote>
+  <p>And Brandon OD’d and died (Woah-oh)<br />
+What the hell is going on?<br />
+Cruelest dream, reality</p>
+</blockquote>
+
+<p>This time, we’re going to talk about a different kind of OD, not Over-Dosed,
+but <strong>Offence/Defense</strong>, a mechanic at the heart of most action games and, for
+many players, the “cruelest dream, reality”.</p>
+
+<details>
+  <summary><strong>Articles in the series</strong></summary>
+
+  <ul>
+    <li><a href="/game-development/2026/04/30/im-leaving-dev-1.html">Devlog #1: I’m Leaving</a></li>
+    <li><a href="/game-development/2026/06/07/im-leaving-dev-2.html">Devlog #2: I’m Leaving, Jump!</a></li>
+    <li><a href="/game-development/2026/10/11/im-leaving-dev-3.html">Devlog #3: I’m Leaving, Offense/Defense</a></li>
+  </ul>
+
+</details>
+
+<hr />
+
+<h3 id="060-alpha2">0.6.0-alpha.2</h3>
+<h4 id="defense">Defense</h4>
+
+<p>As the second weapon type alongside the pistol, the shotgun fires three bullets
+at once, each landing randomly within a 3×3 grid centered on the crosshair.
+The bullets always land in front of the Player, so at close range, the spread is
+reduced to a 3×2 grid, as the remaining 3×1 section is behind the Player.
+This effectively increases the accuracy at close range.</p>
+
+<video style="width: 100%; max-width: 720px; height: auto;" controls="" autoplay="" muted="" loop="" playsinline="">
+  <source src="/assets/videos/im-leaving/0.6.0-alpha.2-demo.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<h3 id="0120-alpha1">0.12.0-alpha.1</h3>
+<h4 id="offense">Offense</h4>
+
+<p>Between <code class="language-plaintext highlighter-rouge">v0.7.0</code> to <code class="language-plaintext highlighter-rouge">v0.11.0</code>, the changes are primarily related to menu, setting
+page, animation, …and so on, which we will use another time to discuss. For
+now, we fast-forward to Enemy offense, a topic about pathfinding.</p>
+
+<p>The pathfinding algorithm in this game is inspired by Professor David Churchill’s
+course <a href="https://davechurchill.ca/teaching/">COMP 4303: AI for Video Games</a>,
+specifically the <em>Lecture 06 - Grid Algorithms</em>.</p>
+
+<p>First, a Breadth-First Search (BFS) distance field is constructed to compute
+the <a href="https://en.wikipedia.org/wiki/Chebyshev_distance">Chebyshev distance</a>
+from every grid cell to the player. After that, an overlay of <em>influence map</em>
+is constructed, based on the equation:</p>
+
+\[I(c) = M(c) + \min(N(c) \cdot E, E_{\max})\]
+
+<p>Where:</p>
+
+<ul>
+  <li>$c$: The grid cell being evaluated.</li>
+  <li>$I(c)$: Total influence cost of cell $c$.</li>
+  <li>$M(c)$: Mine penalty at cell $c$.</li>
+  <li>$N(c)$: Number of enemies occupying cell $c$.</li>
+  <li>$E$: Crowd cost per enemy.</li>
+  <li>$E_{\max}$: Maximum crowd penalty.</li>
+</ul>
+
+<p>I’m a believer of that enemy should be able to make mistakes just like the player,
+and that’s why a mine-buried cell is a penalty rather than being treated as a blocked
+path. Stepping in to it is discouraged, but never impossible. As for the crowd penalty,
+I want to emulate the tactic that the enemies spread out and surround the player,
+as opposed to all converging on the optimized path.</p>
+
+<p>In the demo clip below, the calculated overall score (BFS distance +
+influence score) is displayed on each cell. The 1000+ orange scores are the
+landmines.</p>
+
+<video style="width: 100%; max-width: 720px; height: auto;" controls="" autoplay="" muted="" loop="" playsinline="">
+  <source src="/assets/videos/im-leaving/0.12.0-alpha.1-demo-1.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<p>As a result, a vector field can be constructed in which each vector points toward
+the neighboring cell with the lowest transition score.</p>
+
+<video style="width: 100%; max-width: 720px; height: auto;" controls="" autoplay="" muted="" loop="" playsinline="">
+  <source src="/assets/videos/im-leaving/0.12.0-alpha.1-demo-2.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<p>An advantage of using a vector field over individual pathfinding algorithms such
+as A* or Dijkstra’s is that the field is a shared global navigation state. This
+makes it particularly suitable for a swarm of enemies, since the computational cost
+scales well as the number of enemies increases.</p>
+
+<p>That said, each enemy in the game still maintains its own local state for
+backtracking prevention (so that they don’t swing back and forth between two cells,
+as if hesitating) and physical overlap resolution. However, these operations
+are considerably cheaper than computing a separate path across the entire map.</p>
+
+<p>And that concludes the updates for this time. Thanks for your curiosity!</p>
+
+  </div>
+
+  <a class="u-url" href="/game-development/2026/10/11/im-leaving-dev-3.html" hidden></a>
+</article>
+
+      </div>
+    </main><link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.0.0/css/all.min.css">
+
+<footer class="site-footer h-card">
+  <data class="u-url" value="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <ul class="contact-list">
+          <li class="p-name">searat</li>
+          <li><a class="u-email" href="mailto:searat[dot]writer[at]proton[dot]me">searat[dot]writer[at]proton[dot]me</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
+</p>
+      </div>
+    </div>
+
+    <div class="social-links"><style>
+  /* Every social button has the same outer height */
+  .social-media-list li a {
+    box-sizing: border-box;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+  }
+
+  /* Image badges should not reserve inline baseline space */
+  .social-media-list li a img {
+    display: block;
+    width: auto;
+  }
+
+  /* No surrounding border or horizontal padding for image badges */
+  .social-media-list li a.rss-badge,
+  .social-media-list li a.smallweb-badge {
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .social-media-list li a.rss-badge img {
+    height: 20px;
+  }
+
+  .social-media-list li a.smallweb-badge img {
+    height: 31px;
+  }
+</style>
+
+<ul class="social-media-list"><li>
+    <a
+      rel="me"
+      href="https://bsky.app/profile/searat.blog"
+      target="_blank"
+      title="Bluesky"
+    >
+      <span class="grey fa-brands fa-bluesky fa-lg"></span>
+    </a>
+  </li><li>
+    <a
+      rel="me"
+      href="https://searat.itch.io/"
+      target="_blank"
+      title="itch.io"
+    >
+      <span class="grey fa-brands fa-itch-io fa-lg"></span>
+    </a>
+  </li>
+  <li>
+    <a
+      href="https://searat.blog/feed.xml"
+      target="_blank"
+      title="Subscribe to syndication feed"
+    >
+      <svg class="svg-icon grey" viewBox="0 0 16 16">
+        <path d="M12.8 16C12.8 8.978 7.022 3.2 0 3.2V0c8.777 0 16 7.223 16 16h-3.2zM2.194
+          11.61c1.21 0 2.195.985 2.195 2.196 0 1.21-.99 2.194-2.2 2.194C.98 16 0 15.017 0
+          13.806c0-1.21.983-2.195 2.194-2.195zM10.606
+          16h-3.11c0-4.113-3.383-7.497-7.496-7.497v-3.11c5.818 0 10.606 4.79 10.606 10.607z"
+        />
+      </svg>
+    </a>
+  </li>
+
+  <li>
+    <a
+      class="rss-badge"
+      href="https://iheartrss.com/"
+      target="_blank"
+      rel="noopener"
+      title="I love RSS"
+    >
+      <picture>
+        <source
+          srcset="https://iheartrss.com/iheartrss-dark.svg"
+          media="(prefers-color-scheme: dark)"
+        >
+        <img
+          src="https://iheartrss.com/iheartrss.svg"
+          alt="I love RSS"
+        >
+      </picture>
+    </a>
+  </li>
+
+  <li>
+    <a
+      class="smallweb-badge"
+      href="https://kagi.com/smallweb"
+      target="_blank"
+      rel="noopener"
+      title="Kagi Small Web"
+    >
+      <img
+        src="https://camo.githubusercontent.com/05046a28621d58344a06ba01b0c99bd44538f39c5a01e4e3b769f57de2f3f61c/68747470733a2f2f6b616769666565646261636b2e6f72672f6173736574732f66696c65732f323032352d31312d32372f313736343235303937332d3730383336392d38387833312d322e676966"
+        alt="Kagi Small Web"
+      >
+    </a>
+  </li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+<div
+  class="subfooter"
+  style="
+    margin-top: 0.25rem;
+    padding-top: 0.25rem;
+    border-top: 1px solid #e1e1e1;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+  "
+>
+  &copy; 2026
+  searat.
+  All rights reserved.
+</div>
+</body>
+
+</html>

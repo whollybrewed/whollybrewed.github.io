@@ -14,6 +14,7 @@ available to Player.
 
 - [Devlog #1: I'm Leaving]({% post_url 2026-04-30-im-leaving-dev-1 %})
 - [Devlog #2: I'm Leaving, Jump!]({% post_url 2026-06-07-im-leaving-dev-2 %})
+- [Devlog #3: I'm Leaving, Offense/Defense]({% post_url 2026-10-11-im-leaving-dev-3 %})
 
 </details>
 

@@ -22,6 +22,10 @@ sass:
   quiet_deps: true
   silence_deprecations: [import]
 
+# Markdown and mathematical equations
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
 
 # Pagination settings
 paginate: 5

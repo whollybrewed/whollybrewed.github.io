@@ -6,9 +6,123 @@
     <description>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
 </description>
     <language>en</language>
-    <lastBuildDate>Sun, 30 Aug 2026 15:24:20 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 11 Oct 2026 20:57:57 +0200</lastBuildDate>
     <atom:link href="https://searat.blog/rss.xml"
                rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Devlog #3: I&apos;m Leaving, Offense/Defense</title>
+      <link>https://searat.blog/game-development/2026/10/11/im-leaving-dev-3.html</link>
+      <guid isPermaLink="true">https://searat.blog/game-development/2026/10/11/im-leaving-dev-3.html</guid>
+      <pubDate>Sun, 11 Oct 2026 00:00:00 +0200</pubDate>
+      <description>&lt;p&gt;From The Offspring’s 1998 single
+&lt;a href=&quot;https://youtu.be/7iNbnineUCI?si=DO4jFsMdz2_uJoZS&quot;&gt;&lt;em&gt;The Kids Aren’t Alright&lt;/em&gt;&lt;/a&gt;:&lt;/p&gt;
+&lt;figure&gt;
+  &lt;img src=&quot;/assets/images/im-leaving/the_offspring.jpg&quot; alt=&quot;The Offspring – The Kids Aren&apos;t Alright&quot; /&gt;
+&lt;/figure&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;And Brandon OD’d and died (Woah-oh)&lt;br /&gt;
+What the hell is going on?&lt;br /&gt;
+Cruelest dream, reality&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This time, we’re going to talk about a different kind of OD, not Over-Dosed,
+but &lt;strong&gt;Offence/Defense&lt;/strong&gt;, a mechanic at the heart of most action games and, for
+many players, the “cruelest dream, reality”.&lt;/p&gt;
+
+&lt;details&gt;
+  &lt;summary&gt;&lt;strong&gt;Articles in the series&lt;/strong&gt;&lt;/summary&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;/game-development/2026/04/30/im-leaving-dev-1.html&quot;&gt;Devlog #1: I’m Leaving&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/game-development/2026/06/07/im-leaving-dev-2.html&quot;&gt;Devlog #2: I’m Leaving, Jump!&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/game-development/2026/10/11/im-leaving-dev-3.html&quot;&gt;Devlog #3: I’m Leaving, Offense/Defense&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+&lt;/details&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;060-alpha2&quot;&gt;0.6.0-alpha.2&lt;/h3&gt;
+&lt;h4 id=&quot;defense&quot;&gt;Defense&lt;/h4&gt;
+
+&lt;p&gt;As the second weapon type alongside the pistol, the shotgun fires three bullets
+at once, each landing randomly within a 3×3 grid centered on the crosshair.
+The bullets always land in front of the Player, so at close range, the spread is
+reduced to a 3×2 grid, as the remaining 3×1 section is behind the Player.
+This effectively increases the accuracy at close range.&lt;/p&gt;
+
+&lt;video style=&quot;width: 100%; max-width: 720px; height: auto;&quot; controls=&quot;&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot; playsinline=&quot;&quot;&gt;
+  &lt;source src=&quot;/assets/videos/im-leaving/0.6.0-alpha.2-demo.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;h3 id=&quot;0120-alpha1&quot;&gt;0.12.0-alpha.1&lt;/h3&gt;
+&lt;h4 id=&quot;offense&quot;&gt;Offense&lt;/h4&gt;
+
+&lt;p&gt;Between &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v0.7.0&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;v0.11.0&lt;/code&gt;, the changes are primarily related to menu, setting
+page, animation, …and so on, which we will use another time to discuss. For
+now, we fast-forward to Enemy offense, a topic about pathfinding.&lt;/p&gt;
+
+&lt;p&gt;The pathfinding algorithm in this game is inspired by Professor David Churchill’s
+course &lt;a href=&quot;https://davechurchill.ca/teaching/&quot;&gt;COMP 4303: AI for Video Games&lt;/a&gt;,
+specifically the &lt;em&gt;Lecture 06 - Grid Algorithms&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;First, a Breadth-First Search (BFS) distance field is constructed to compute
+the &lt;a href=&quot;https://en.wikipedia.org/wiki/Chebyshev_distance&quot;&gt;Chebyshev distance&lt;/a&gt;
+from every grid cell to the player. After that, an overlay of &lt;em&gt;influence map&lt;/em&gt;
+is constructed, based on the equation:&lt;/p&gt;
+
+\[I(c) = M(c) + \min(N(c) \cdot E, E_{\max})\]
+
+&lt;p&gt;Where:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;$c$: The grid cell being evaluated.&lt;/li&gt;
+  &lt;li&gt;$I(c)$: Total influence cost of cell $c$.&lt;/li&gt;
+  &lt;li&gt;$M(c)$: Mine penalty at cell $c$.&lt;/li&gt;
+  &lt;li&gt;$N(c)$: Number of enemies occupying cell $c$.&lt;/li&gt;
+  &lt;li&gt;$E$: Crowd cost per enemy.&lt;/li&gt;
+  &lt;li&gt;$E_{\max}$: Maximum crowd penalty.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’m a believer of that enemy should be able to make mistakes just like the player,
+and that’s why a mine-buried cell is a penalty rather than being treated as a blocked
+path. Stepping in to it is discouraged, but never impossible. As for the crowd penalty,
+I want to emulate the tactic that the enemies spread out and surround the player,
+as opposed to all converging on the optimized path.&lt;/p&gt;
+
+&lt;p&gt;In the demo clip below, the calculated overall score (BFS distance +
+influence score) is displayed on each cell. The 1000+ orange scores are the
+landmines.&lt;/p&gt;
+
+&lt;video style=&quot;width: 100%; max-width: 720px; height: auto;&quot; controls=&quot;&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot; playsinline=&quot;&quot;&gt;
+  &lt;source src=&quot;/assets/videos/im-leaving/0.12.0-alpha.1-demo-1.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;p&gt;As a result, a vector field can be constructed in which each vector points toward
+the neighboring cell with the lowest transition score.&lt;/p&gt;
+
+&lt;video style=&quot;width: 100%; max-width: 720px; height: auto;&quot; controls=&quot;&quot; autoplay=&quot;&quot; muted=&quot;&quot; loop=&quot;&quot; playsinline=&quot;&quot;&gt;
+  &lt;source src=&quot;/assets/videos/im-leaving/0.12.0-alpha.1-demo-2.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;p&gt;An advantage of using a vector field over individual pathfinding algorithms such
+as A* or Dijkstra’s is that the field is a shared global navigation state. This
+makes it particularly suitable for a swarm of enemies, since the computational cost
+scales well as the number of enemies increases.&lt;/p&gt;
+
+&lt;p&gt;That said, each enemy in the game still maintains its own local state for
+backtracking prevention (so that they don’t swing back and forth between two cells,
+as if hesitating) and physical overlap resolution. However, these operations
+are considerably cheaper than computing a separate path across the entire map.&lt;/p&gt;
+
+&lt;p&gt;And that concludes the updates for this time. Thanks for your curiosity!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Hauntology of a Summer Brew</title>
@@ -323,6 +437,7 @@ available to Player.&lt;/p&gt;
   &lt;ul&gt;
     &lt;li&gt;&lt;a href=&quot;/game-development/2026/04/30/im-leaving-dev-1.html&quot;&gt;Devlog #1: I’m Leaving&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;/game-development/2026/06/07/im-leaving-dev-2.html&quot;&gt;Devlog #2: I’m Leaving, Jump!&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/game-development/2026/10/11/im-leaving-dev-3.html&quot;&gt;Devlog #3: I’m Leaving, Offense/Defense&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 
 &lt;/details&gt;
@@ -636,6 +751,7 @@ novice game developer.&lt;/p&gt;
   &lt;ul&gt;
     &lt;li&gt;&lt;a href=&quot;/game-development/2026/04/30/im-leaving-dev-1.html&quot;&gt;Devlog #1: I’m Leaving&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;/game-development/2026/06/07/im-leaving-dev-2.html&quot;&gt;Devlog #2: I’m Leaving, Jump!&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/game-development/2026/10/11/im-leaving-dev-3.html&quot;&gt;Devlog #3: I’m Leaving, Offense/Defense&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 
 &lt;/details&gt;

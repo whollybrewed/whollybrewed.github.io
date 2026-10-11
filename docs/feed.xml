@@ -1,5 +1,110 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-08-30T15:24:20+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
-</subtitle><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><entry><title type="html">Hauntology of a Summer Brew</title><link href="https://searat.blog/brewery/demo/2026/07/19/hauntology-of-a-summer-brew.html" rel="alternate" type="text/html" title="Hauntology of a Summer Brew" /><published>2026-07-19T00:00:00+02:00</published><updated>2026-07-19T00:00:00+02:00</updated><id>https://searat.blog/brewery/demo/2026/07/19/hauntology-of-a-summer-brew</id><content type="html" xml:base="https://searat.blog/brewery/demo/2026/07/19/hauntology-of-a-summer-brew.html"><![CDATA[<p>I want to write about a project I have been preparing for some time. It is a
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://searat.blog/feed.xml" rel="self" type="application/atom+xml" /><link href="https://searat.blog/" rel="alternate" type="text/html" /><updated>2026-10-11T20:57:57+02:00</updated><id>https://searat.blog/feed.xml</id><title type="html">searat’s blog</title><subtitle>A blog for answering the age-old question: &quot;So… what do you do in your free time?&quot;
+</subtitle><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><entry><title type="html">Devlog #3: I’m Leaving, Offense/Defense</title><link href="https://searat.blog/game-development/2026/10/11/im-leaving-dev-3.html" rel="alternate" type="text/html" title="Devlog #3: I’m Leaving, Offense/Defense" /><published>2026-10-11T00:00:00+02:00</published><updated>2026-10-11T00:00:00+02:00</updated><id>https://searat.blog/game-development/2026/10/11/im-leaving-dev-3</id><content type="html" xml:base="https://searat.blog/game-development/2026/10/11/im-leaving-dev-3.html"><![CDATA[<p>From The Offspring’s 1998 single
+<a href="https://youtu.be/7iNbnineUCI?si=DO4jFsMdz2_uJoZS"><em>The Kids Aren’t Alright</em></a>:</p>
+<figure>
+  <img src="/assets/images/im-leaving/the_offspring.jpg" alt="The Offspring – The Kids Aren't Alright" />
+</figure>
+
+<blockquote>
+  <p>And Brandon OD’d and died (Woah-oh)<br />
+What the hell is going on?<br />
+Cruelest dream, reality</p>
+</blockquote>
+
+<p>This time, we’re going to talk about a different kind of OD, not Over-Dosed,
+but <strong>Offence/Defense</strong>, a mechanic at the heart of most action games and, for
+many players, the “cruelest dream, reality”.</p>
+
+<details>
+  <summary><strong>Articles in the series</strong></summary>
+
+  <ul>
+    <li><a href="/game-development/2026/04/30/im-leaving-dev-1.html">Devlog #1: I’m Leaving</a></li>
+    <li><a href="/game-development/2026/06/07/im-leaving-dev-2.html">Devlog #2: I’m Leaving, Jump!</a></li>
+    <li><a href="/game-development/2026/10/11/im-leaving-dev-3.html">Devlog #3: I’m Leaving, Offense/Defense</a></li>
+  </ul>
+
+</details>
+
+<hr />
+
+<h3 id="060-alpha2">0.6.0-alpha.2</h3>
+<h4 id="defense">Defense</h4>
+
+<p>As the second weapon type alongside the pistol, the shotgun fires three bullets
+at once, each landing randomly within a 3×3 grid centered on the crosshair.
+The bullets always land in front of the Player, so at close range, the spread is
+reduced to a 3×2 grid, as the remaining 3×1 section is behind the Player.
+This effectively increases the accuracy at close range.</p>
+
+<video style="width: 100%; max-width: 720px; height: auto;" controls="" autoplay="" muted="" loop="" playsinline="">
+  <source src="/assets/videos/im-leaving/0.6.0-alpha.2-demo.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<h3 id="0120-alpha1">0.12.0-alpha.1</h3>
+<h4 id="offense">Offense</h4>
+
+<p>Between <code class="language-plaintext highlighter-rouge">v0.7.0</code> to <code class="language-plaintext highlighter-rouge">v0.11.0</code>, the changes are primarily related to menu, setting
+page, animation, …and so on, which we will use another time to discuss. For
+now, we fast-forward to Enemy offense, a topic about pathfinding.</p>
+
+<p>The pathfinding algorithm in this game is inspired by Professor David Churchill’s
+course <a href="https://davechurchill.ca/teaching/">COMP 4303: AI for Video Games</a>,
+specifically the <em>Lecture 06 - Grid Algorithms</em>.</p>
+
+<p>First, a Breadth-First Search (BFS) distance field is constructed to compute
+the <a href="https://en.wikipedia.org/wiki/Chebyshev_distance">Chebyshev distance</a>
+from every grid cell to the player. After that, an overlay of <em>influence map</em>
+is constructed, based on the equation:</p>
+
+\[I(c) = M(c) + \min(N(c) \cdot E, E_{\max})\]
+
+<p>Where:</p>
+
+<ul>
+  <li>$c$: The grid cell being evaluated.</li>
+  <li>$I(c)$: Total influence cost of cell $c$.</li>
+  <li>$M(c)$: Mine penalty at cell $c$.</li>
+  <li>$N(c)$: Number of enemies occupying cell $c$.</li>
+  <li>$E$: Crowd cost per enemy.</li>
+  <li>$E_{\max}$: Maximum crowd penalty.</li>
+</ul>
+
+<p>I’m a believer of that enemy should be able to make mistakes just like the player,
+and that’s why a mine-buried cell is a penalty rather than being treated as a blocked
+path. Stepping in to it is discouraged, but never impossible. As for the crowd penalty,
+I want to emulate the tactic that the enemies spread out and surround the player,
+as opposed to all converging on the optimized path.</p>
+
+<p>In the demo clip below, the calculated overall score (BFS distance +
+influence score) is displayed on each cell. The 1000+ orange scores are the
+landmines.</p>
+
+<video style="width: 100%; max-width: 720px; height: auto;" controls="" autoplay="" muted="" loop="" playsinline="">
+  <source src="/assets/videos/im-leaving/0.12.0-alpha.1-demo-1.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<p>As a result, a vector field can be constructed in which each vector points toward
+the neighboring cell with the lowest transition score.</p>
+
+<video style="width: 100%; max-width: 720px; height: auto;" controls="" autoplay="" muted="" loop="" playsinline="">
+  <source src="/assets/videos/im-leaving/0.12.0-alpha.1-demo-2.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<p>An advantage of using a vector field over individual pathfinding algorithms such
+as A* or Dijkstra’s is that the field is a shared global navigation state. This
+makes it particularly suitable for a swarm of enemies, since the computational cost
+scales well as the number of enemies increases.</p>
+
+<p>That said, each enemy in the game still maintains its own local state for
+backtracking prevention (so that they don’t swing back and forth between two cells,
+as if hesitating) and physical overlap resolution. However, these operations
+are considerably cheaper than computing a separate path across the entire map.</p>
+
+<p>And that concludes the updates for this time. Thanks for your curiosity!</p>]]></content><author><name>searat</name><email>searat[dot]writer[at]proton[dot]me</email></author><category term="game-development" /><summary type="html"><![CDATA[From The Offspring’s 1998 single The Kids Aren’t Alright:]]></summary></entry><entry><title type="html">Hauntology of a Summer Brew</title><link href="https://searat.blog/brewery/demo/2026/07/19/hauntology-of-a-summer-brew.html" rel="alternate" type="text/html" title="Hauntology of a Summer Brew" /><published>2026-07-19T00:00:00+02:00</published><updated>2026-07-19T00:00:00+02:00</updated><id>https://searat.blog/brewery/demo/2026/07/19/hauntology-of-a-summer-brew</id><content type="html" xml:base="https://searat.blog/brewery/demo/2026/07/19/hauntology-of-a-summer-brew.html"><![CDATA[<p>I want to write about a project I have been preparing for some time. It is a
 microbrewery, built as a distributed cyber-physical system with automation services.</p>
 <figure>
   <img src="/assets/images/brewery/site_250a.jpg" alt="Site 250A" />
@@ -298,6 +403,7 @@ available to Player.</p>
   <ul>
     <li><a href="/game-development/2026/04/30/im-leaving-dev-1.html">Devlog #1: I’m Leaving</a></li>
     <li><a href="/game-development/2026/06/07/im-leaving-dev-2.html">Devlog #2: I’m Leaving, Jump!</a></li>
+    <li><a href="/game-development/2026/10/11/im-leaving-dev-3.html">Devlog #3: I’m Leaving, Offense/Defense</a></li>
   </ul>
 
 </details>
@@ -593,6 +699,7 @@ novice game developer.</p>
   <ul>
     <li><a href="/game-development/2026/04/30/im-leaving-dev-1.html">Devlog #1: I’m Leaving</a></li>
     <li><a href="/game-development/2026/06/07/im-leaving-dev-2.html">Devlog #2: I’m Leaving, Jump!</a></li>
+    <li><a href="/game-development/2026/10/11/im-leaving-dev-3.html">Devlog #3: I’m Leaving, Offense/Defense</a></li>
   </ul>
 
 </details>
